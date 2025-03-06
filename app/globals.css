@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-rgb: 7, 7, 7;
+}
+
+.dark {
+  --foreground-rgb: 255, 255, 255;
+  --background-rgb: 7, 7, 7;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-rgb));
+}
+
+.dashboard-section {
+  @apply p-[30px];
+}
+
+.section-title {
+  @apply text-xl font-semibold mb-4 text-gray-800 dark:text-gray-100 text-center;
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  display: none;
+  z-index: 55;
+}
+
+.swiper-slide {
+  width: 105px !important;
+  overflow: visible;
+}
+
+#employee-container {
+  @apply w-[960px] mt-[30px] rounded-lg shadow-xl bg-[#070707] overflow-hidden;
+}
