@@ -17,7 +17,7 @@ export function Header({ employee }) {
   }
 
   return (
-    <div className="flex items-center justify-between">
+    <div className="dashboard-section flex items-center justify-between py-14">
       <div className="flex items-center">
         <div className="w-[110px] h-[110px] flex items-center justify-center">
           <img

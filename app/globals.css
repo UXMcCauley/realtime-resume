@@ -9,37 +9,162 @@
 
 .dark {
   --foreground-rgb: 255, 255, 255;
-  --background-rgb: 7, 7, 7;
+  --background-rgb: 6, 6, 6;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: rgb(var(--background-rgb));
+/* Default */
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 10% 3.9%;
+    --chart-1: 173 58% 39%;
+    --chart-2: 12 76% 61%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+  }
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+    --chart-1: 220 70% 50%;
+    --chart-5: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-2: 340 75% 55%;
+  }
+}
+
+/*body {*/
+/*  color: rgb(var(--foreground-rgb));*/
+/*  background: rgb(var(--background-rgb));*/
+/*}*/
+
+#employee-container {
+  background: #171717;
+  @apply w-[960px] mt-[30px] rounded-lg shadow-xl overflow-visible;
 }
 
 .dashboard-section {
-  @apply p-[30px];
+  @apply w-full px-10 overflow-hidden;
 }
 
 .section-title {
-  @apply text-xl font-semibold mb-4 text-gray-800 dark:text-gray-100 text-center;
+  @apply text-2xl font-extralight text-gray-800 dark:text-gray-100 text-left w-full mb-6 ml-6;
 }
 
-.no-scroll {
-  overflow: hidden;
+.swiper-image {
+  @apply relative cursor-pointer overflow-visible transform transition-all hover:scale-105 p-0 select-none;
+}
+
+.swiper-image.inactive {
+  @apply grayscale contrast-50 opacity-60
+}
+
+.badge-overlay {
+  @apply absolute top-0 left-0 right-0 bottom-0 inset-0 bg-black/90 z-[60] flex items-center justify-center cursor-pointer;
+}
+
+.badge-overlay-number {
+  @apply absolute text-black top-2 -right-1 w-10 h-10 rounded-full overflow-visible flex items-center justify-center text-xl font-bold shadow-lg z-20;
+}
+
+.badge-overlay-close {
+  @apply absolute top-10 right-10 p-2 rounded-full hover:bg-gray-800/50 text-white;
+}
+
+.swiper-container-bg {
+  background: #0a0a0a;
+  @apply w-[1000px] h-[150px] relative overflow-visible pl-2 py-4 -ml-[20px] shadow-lg shadow-[rgba(0,0,0,0.4)]/50;
 }
 
 .swiper-button-prev::after,
 .swiper-button-next::after {
   display: none;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
   z-index: 55;
+  background: #78a73b;
+  cursor: pointer;
+  @apply shadow-lg
+}
+
+.swiper-button-prev {
+  left: 0;
+  @apply rounded-r-lg;
+}
+
+.swiper-button-next {
+  right: 0;
+  @apply rounded-l-lg;
 }
 
 .swiper-slide {
-  width: 105px !important;
+  width: 110px;
   overflow: visible;
+  @apply flex items-center justify-center;
 }
 
-#employee-container {
-  @apply w-[960px] mt-[30px] rounded-lg shadow-xl bg-[#070707] overflow-hidden;
+.recharts-surface {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0;
 }
+
+.recharts-surface:focus {
+  outline: none !important;
+}
+.recharts-button {
+  padding: 20px 30px 12px 12px;
+  border: 1px solid  rgba(255, 255, 255, 0.1);
+  border-bottom: none;
+  text-align: left;
+}
+.recharts-button:not(:last-child) {
+  border-right: none;
+}
+.recharts-button[data-active="true"] {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.recharts-responsive-container,
+.recharts-wrapper,
+.recharts-surface {
+  max-width: 100%;
+  width: 100%;
+}
+

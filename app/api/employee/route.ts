@@ -71,7 +71,8 @@ export async function GET() {
         date: "2023-12-01",
         note: "Consistently delivers exceptional client satisfaction",
         value: 3,
-        primaryColor: "#50C878"
+        primaryColor: "#bed34e",
+        earned: true,
       },
       {
         name: "Efficiency Expert",
@@ -79,7 +80,8 @@ export async function GET() {
         date: "2023-11-15",
         note: "Optimized workflows and improved team productivity",
         value: 2,
-        primaryColor: "#FFE066"
+        primaryColor: "#3bbddd",
+        earned: true,
       },
       {
         name: "Problem Solver",
@@ -87,7 +89,8 @@ export async function GET() {
         date: "2023-11-01",
         note: "Effectively resolves complex technical challenges",
         value: 1,
-        primaryColor: "#FF6B6B"
+        primaryColor: "#FF6B6B",
+        earned: true,
       },
       {
         name: "Leadership Star",
@@ -95,7 +98,8 @@ export async function GET() {
         date: "2023-10-15",
         note: "Demonstrates exceptional leadership qualities",
         value: 0,
-        primaryColor: "#4ECDC4"
+        primaryColor: "#4ECDC4",
+        earned: true,
       },
       {
         name: "Innovator",
@@ -103,7 +107,8 @@ export async function GET() {
         date: "2023-10-01",
         note: "Brings creative solutions to technical challenges",
         value: 0,
-        primaryColor: "#45B7D1"
+        primaryColor: "#45B7D1",
+        earned: false,
       },
       {
         name: "Mentorship",
@@ -111,7 +116,8 @@ export async function GET() {
         date: "2023-09-15",
         note: "Guides and supports team members' growth",
         value: 0,
-        primaryColor: "#96CEB4"
+        primaryColor: "#96CEB4",
+        earned: false,
       },
       {
         name: "Attendance Ace",
@@ -119,7 +125,8 @@ export async function GET() {
         date: "2023-09-01",
         note: "Maintains excellent attendance record",
         value: 0,
-        primaryColor: "#D4A5A5"
+        primaryColor: "#D4A5A5",
+        earned: false,
       },
       {
         name: "Peak Performer",
@@ -127,7 +134,8 @@ export async function GET() {
         date: "2023-08-15",
         note: "Consistently exceeds performance expectations",
         value: 0,
-        primaryColor: "#FF9EAA"
+        primaryColor: "#FF9EAA",
+        earned: false,
       },
       {
         name: "Completion",
@@ -135,7 +143,8 @@ export async function GET() {
         date: "2023-08-01",
         note: "Successfully completes projects on time",
         value: 0,
-        primaryColor: "#9B59B6"
+        primaryColor: "#9B59B6",
+        earned: false,
       },
       {
         name: "Flexibility",
@@ -143,7 +152,8 @@ export async function GET() {
         date: "2023-07-15",
         note: "Adapts well to changing requirements",
         value: 0,
-        primaryColor: "#3498DB"
+        primaryColor: "#3498DB",
+        earned: false,
       },
       {
         name: "Holiday Hero",
@@ -151,7 +161,8 @@ export async function GET() {
         date: "2023-07-01",
         note: "Maintains productivity during holiday seasons",
         value: 0,
-        primaryColor: "#E74C3C"
+        primaryColor: "#E74C3C",
+        earned: false,
       },
       {
         name: "Longevity",
@@ -159,7 +170,8 @@ export async function GET() {
         date: "2023-06-15",
         note: "Demonstrates long-term commitment",
         value: 0,
-        primaryColor: "#2ECC71"
+        primaryColor: "#2ECC71",
+        earned: false,
       },
       {
         name: "Overtime Champion",
@@ -167,7 +179,8 @@ export async function GET() {
         date: "2023-06-01",
         note: "Goes above and beyond when needed",
         value: 0,
-        primaryColor: "#F1C40F"
+        primaryColor: "#F1C40F",
+        earned: false,
       },
       {
         name: "Perfectionist",
@@ -175,7 +188,8 @@ export async function GET() {
         date: "2023-05-15",
         note: "Maintains high quality standards",
         value: 0,
-        primaryColor: "#1ABC9C"
+        primaryColor: "#1ABC9C",
+        earned: false,
       },
       {
         name: "Rookie of the Year",
@@ -183,7 +197,8 @@ export async function GET() {
         date: "2023-05-01",
         note: "Outstanding performance as a new team member",
         value: 0,
-        primaryColor: "#E67E22"
+        primaryColor: "#E67E22",
+        earned: false,
       },
       {
         name: "Safety First",
@@ -191,7 +206,8 @@ export async function GET() {
         date: "2023-04-15",
         note: "Prioritizes security and best practices",
         value: 0,
-        primaryColor: "#34495E"
+        primaryColor: "#34495E",
+        earned: false,
       },
       {
         name: "Skill Master",
@@ -199,7 +215,8 @@ export async function GET() {
         date: "2023-04-01",
         note: "Demonstrates exceptional technical skills",
         value: 0,
-        primaryColor: "#8E44AD"
+        primaryColor: "#8E44AD",
+        earned: false,
       },
       {
         name: "Task Master",
@@ -207,7 +224,8 @@ export async function GET() {
         date: "2023-03-15",
         note: "Efficiently manages multiple tasks",
         value: 0,
-        primaryColor: "#16A085"
+        primaryColor: "#16A085",
+        earned: false,
       },
       {
         name: "Weekend Warrior",
@@ -215,7 +233,8 @@ export async function GET() {
         date: "2023-03-01",
         note: "Shows dedication beyond regular hours",
         value: 0,
-        primaryColor: "#D35400"
+        primaryColor: "#D35400",
+        earned: false,
       },
       {
         name: "Collaboration Guru",
@@ -223,7 +242,8 @@ export async function GET() {
         date: "2023-02-15",
         note: "Excels in team collaboration",
         value: 0,
-        primaryColor: "#27AE60"
+        primaryColor: "#27AE60",
+        earned: false,
       }
     ]
   };

@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function About({employee}) {
     return (
-        <div className="flex justify-between divide-x divide-gray-200 dark:divide-gray-900 mt-16">
+        <div className="dashboard-section flex justify-between divide-x divide-gray-200 dark:divide-gray-900">
             {/* Bio Section */}
             {employee.bio && (
                 <div className="space-y-2 w-1/3">

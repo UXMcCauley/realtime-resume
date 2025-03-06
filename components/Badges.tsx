@@ -6,6 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
+import "./../app/globals.css";
 import {
   FacebookShareButton,
   TwitterShareButton,
@@ -17,7 +18,7 @@ import {
   WhatsappIcon
 } from 'react-share';
 
-export function Badges({ employee }: { employee: { badges: { name: string; img: string; primaryColor: string; value: number; date: string; note: string; }[]; } }) {
+export function Badges({ employee }: { employee: { badges: { name: string; img: string; primaryColor: string; value: number; date: string; note: string; earned: boolean; }[]; } }) {
   const [selectedBadge, setSelectedBadge] = useState<{ name: string; img: string; primaryColor: string; value: number; date: string; note: string; } | null>(null);
   const [isStart, setIsStart] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
@@ -44,26 +45,26 @@ export function Badges({ employee }: { employee: { badges: { name: string; img: 
     `Check out my ${selectedBadge.name} badge! ${selectedBadge.note}` : '';
 
   return (
-    <div className="overflow-visible">
-      <h2 className="section-title pt-[30px]">Badges</h2>
-      <div className="relative bg-[#141414] overflow-visible">
+    <div>
+      <h2 className=" section-title">Badges</h2>
+      <div className="swiper-container-bg">
         {!isStart && (
-          <button className="absolute left-0 top-4 z-10 bg-black/50 p-2 rounded-r swiper-button-prev">
+          <button className="swiper-button-prev">
             <ChevronLeft className="w-6 h-6 text-white" />
           </button>
         )}
 
         {!isEnd && (
-          <button className="absolute right-0 top-4 z-10 bg-black/50 p-2 rounded-l swiper-button-next">
+          <button className="swiper-button-next">
             <ChevronRight className="w-6 h-6 text-white" />
           </button>
         )}
 
-        <div className="py-8 overflow-visible">
+        <div className="overflow-visible">
           <Swiper
             modules={[Navigation]}
-            spaceBetween={10}
-            slidesPerView="auto"
+            spaceBetween={4}
+            slidesPerView={8}
             navigation={{
               prevEl: '.swiper-button-prev',
               nextEl: '.swiper-button-next',
@@ -81,7 +82,7 @@ export function Badges({ employee }: { employee: { badges: { name: string; img: 
                     console.log(badge)
                     setSelectedBadge(badge)
                   }}
-                  className="relative cursor-pointer overflow-visible transform transition-all hover:scale-105 p-4"
+                  className={`swiper-image ${badge.earned ? '' : 'inactive'}`}
                 >
                   <div className="w-[105px] h-[105px] flex items-center justify-center">
                     <img
@@ -92,7 +93,7 @@ export function Badges({ employee }: { employee: { badges: { name: string; img: 
                   </div>
                   {badge.value > 1 && (
                     <div
-                      className="absolute top-2 right-2 w-7 h-7 rounded-full flex items-center justify-center text-white text-sm font-bold shadow-lg"
+                      className="badge-overlay-number"
                       style={{
                         backgroundColor: badge.primaryColor,
                         border: '2px solid white',
