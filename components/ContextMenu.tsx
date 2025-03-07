@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 interface ContextMenuProps {
     onPlayNext: (item: string) => void;
@@ -9,7 +9,6 @@ const ContextMenu: React.FC<ContextMenuProps> = ({ onPlayNext, onAddToPlaylist }
     const [visible, setVisible] = useState(false);
     const [position, setPosition] = useState({ x: 0, y: 0 });
     const [selectedItem, setSelectedItem] = useState<string | null>(null);
-    const menuRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const handleClick = () => setVisible(false);
@@ -17,42 +16,27 @@ const ContextMenu: React.FC<ContextMenuProps> = ({ onPlayNext, onAddToPlaylist }
         return () => document.removeEventListener("click", handleClick);
     }, []);
 
-    const handleContextMenu = (event: React.MouseEvent<HTMLDivElement>) => {
+    const handleContextMenu = (event: MouseEvent) => {
         event.preventDefault();
-        setVisible(true);
-        setPosition({ x: event.clientX, y: event.clientY });
-        const clickedText = event.currentTarget.innerText;
+
+        // Get the element under the right-clicked position
+        const target = event.target as HTMLElement;
+        const clickedText = target.innerText || "Unknown Item";
+
         setSelectedItem(clickedText);
+        setPosition({ x: event.pageX, y: event.pageY });
+        setVisible(true);
     };
 
-    const handleAddToPlaylist = async (item: string) => {
-        try {
-            const response = await fetch("/api/saveItem", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ item }),
-            });
-
-            const data = await response.json();
-            if (response.ok) {
-                alert("Item added to playlist!");
-            } else {
-                alert("Error: " + data.message);
-            }
-        } catch (error) {
-            console.error("Failed to add to playlist", error);
-        }
-    };
+    useEffect(() => {
+        document.addEventListener("contextmenu", handleContextMenu);
+        return () => document.removeEventListener("contextmenu", handleContextMenu);
+    }, []);
 
     return (
         <>
-            <div onContextMenu={handleContextMenu} style={{ width: "100%", height: "100%" }}>
-                {/* This div wraps the entire page to capture right-clicks */}
-            </div>
-
             {visible && selectedItem && (
                 <div
-                    ref={menuRef}
                     style={{
                         position: "absolute",
                         top: position.y,
@@ -67,9 +51,15 @@ const ContextMenu: React.FC<ContextMenuProps> = ({ onPlayNext, onAddToPlaylist }
                 >
                     <p style={{ margin: 0, fontWeight: "bold" }}>{selectedItem}</p>
                     <hr />
-                    <button onClick={() => onPlayNext(selectedItem)} style={buttonStyle}>Play Next</button>
-                    <button onClick={() => onAddToPlaylist(selectedItem)} style={buttonStyle}>Add to Playlist</button>
-                    <button style={buttonStyle} disabled>Share (Coming Soon)</button>
+                    <button onClick={() => onPlayNext(selectedItem)} style={buttonStyle}>
+                        Play Next
+                    </button>
+                    <button onClick={() => onAddToPlaylist(selectedItem)} style={buttonStyle}>
+                        Add to Playlist
+                    </button>
+                    <button style={buttonStyle} disabled>
+                        Share (Coming Soon)
+                    </button>
                 </div>
             )}
         </>

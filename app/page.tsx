@@ -8,8 +8,6 @@ import {Timeline} from '@/components/Timeline';
 import { EmploymentMetrics } from '@/components/EmploymentMetrics';
 import { CareerSnapshot } from '@/components/CareerSnapshot';
 import { TalentProgress } from '@/components/TalentProgress';
-// @ts-ignore
-// import CareerTotality from "@/components/CareerTotality";
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { SectionDivider } from '@/components/SectionDivider';
 import About from "@/components/About";
@@ -85,38 +83,35 @@ export default function Home() {
     );
   }
 
-  // @ts-ignore
   const { timeline, ...rest } = employee;
-
   const { badges } = employee;
-  // console.log(badges)
-  // @ts-ignore
-  return (
-    <div className="min-h-screen bg-[#2e2c2c] flex justify-center">
-        <ContextMenu onPlayNext={handlePlayNext} onAddToPlaylist={handleAddToPlaylist} />
-        <div id="employee-container">
-       <div className="absolute top-5 right-5">
-          <ThemeToggle />
-        </div>
-        <Header employee={employee} />
-        <About employee={employee} />
-          <LifePlayer queue={queue} playlist={playlist} />
-        <SectionDivider />
-        {badges && <Badges employee={employee}/>}
-        <SectionDivider />
-        <Timeline employee={attendance} height={320} />
-        {/*<WageChart employee={attendance} height={220} />*/}
-        <SectionDivider />
-        <CareerOverview employee={employee} />
-        <SectionDivider />
-        <EmploymentMetrics employee={employee} />
-        <SectionDivider />
-        <CareerSnapshot employee={employee} />
-        <SectionDivider />
-        <TalentProgress employee={attendance} />
-          {/*<CareerTotality employee={employee} />*/}
-        {/*<CareerTotality employee={employee} />*/}
-      </div>
+
+    return (
+        <div
+            className="min-h-screen bg-[#2e2c2c] flex justify-center"
+            onContextMenu={(e) => e.preventDefault()} // Prevents default browser menu
+        >
+            <ContextMenu onPlayNext={handlePlayNext} onAddToPlaylist={handleAddToPlaylist} />
+            <div id="employee-container">
+                <div className="absolute top-5 right-5">
+                    <ThemeToggle />
+                </div>
+                <Header employee={employee} />
+                <About employee={employee} />
+                <LifePlayer queue={queue} playlist={playlist} />
+                <SectionDivider />
+                {badges && <Badges employee={employee} />}
+                <SectionDivider />
+                <Timeline employee={attendance} height={320} />
+                <SectionDivider />
+                <CareerOverview employee={employee} />
+                <SectionDivider />
+                <EmploymentMetrics employee={employee} />
+                <SectionDivider />
+                <CareerSnapshot employee={employee} />
+                <SectionDivider />
+                <TalentProgress employee={attendance} />
+            </div>
     </div>
   );
 }
