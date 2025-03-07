@@ -75,7 +75,7 @@
 
 #employee-container {
   background: #171717;
-  @apply w-[960px] my-[30px] rounded-lg shadow-xl overflow-visible;
+  @apply w-[960px] my-[30px] mx-auto rounded-lg shadow-xl overflow-visible;
 }
 
 .dashboard-section {

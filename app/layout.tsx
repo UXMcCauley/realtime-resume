@@ -7,7 +7,7 @@ import React from "react";
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Career Dashboard',
+  title: 'Career Dashboard - Listener',
   description: 'A real-time career progress dashboard',
 };
 

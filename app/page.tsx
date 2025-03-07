@@ -1,5 +1,5 @@
 'use client';
-
+import ContextMenu from "@/components/ContextMenu";
 import { useState, useEffect } from 'react';
 import { Header } from '@/components/Header';
 import { CareerOverview } from '@/components/CareerOverview';
@@ -14,8 +14,19 @@ import { ThemeToggle } from '@/components/ThemeToggle';
 import { SectionDivider } from '@/components/SectionDivider';
 import About from "@/components/About";
 import {attendance} from "@/app/api/employee/updated_attendance_data";
+import LifePlayer, { default as LifePlayerProps } from "@/components/LifePlayer";
 
 export default function Home() {
+    const [queue, setQueue] = useState<string[]>([]);
+    const [playlist, setPlaylist] = useState<string[]>([]);
+
+    const handlePlayNext = (item: string) => {
+        setQueue([item, ...queue]);
+    };
+
+    const handleAddToPlaylist = (item: string) => {
+        setPlaylist([...playlist, item]);
+    };
   interface Employee {
     timeline: any; // Replace 'any' with the correct type for 'timeline'
     firstName: string;
@@ -81,13 +92,15 @@ export default function Home() {
   // console.log(badges)
   // @ts-ignore
   return (
-    <div id={`root`} className="min-h-screen bg-[#2e2c2c] flex justify-center">
-      <div id="employee-container">
+    <div className="min-h-screen bg-[#2e2c2c] flex justify-center">
+        <ContextMenu onPlayNext={handlePlayNext} onAddToPlaylist={handleAddToPlaylist} />
+        <div id="employee-container">
        <div className="absolute top-5 right-5">
           <ThemeToggle />
         </div>
         <Header employee={employee} />
         <About employee={employee} />
+          <LifePlayer queue={queue} playlist={playlist} />
         <SectionDivider />
         {badges && <Badges employee={employee}/>}
         <SectionDivider />
