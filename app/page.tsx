@@ -9,11 +9,10 @@ import { EmploymentMetrics } from '@/components/EmploymentMetrics';
 import { CareerSnapshot } from '@/components/CareerSnapshot';
 import { TalentProgress } from '@/components/TalentProgress';
 // @ts-ignore
-import CareerTotality from "@/components/CareerTotality";
+// import CareerTotality from "@/components/CareerTotality";
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { SectionDivider } from '@/components/SectionDivider';
 import About from "@/components/About";
-// import {WageChart} from "@/components/WageChart";
 import {attendance} from "@/app/api/employee/updated_attendance_data";
 
 export default function Home() {
@@ -102,7 +101,7 @@ export default function Home() {
         <CareerSnapshot employee={employee} />
         <SectionDivider />
         <TalentProgress employee={attendance} />
-          <CareerTotality employee={employee} />
+          {/*<CareerTotality employee={employee} />*/}
         {/*<CareerTotality employee={employee} />*/}
       </div>
     </div>
