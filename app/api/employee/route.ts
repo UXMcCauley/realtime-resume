@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import {attendance} from "@/app/api/employee/updated_attendance_data";
 
 export async function GET() {
   const employee = {
@@ -12,14 +13,11 @@ export async function GET() {
     title: "Senior Software Engineer",
     tagline: "Building the future of web development",
     qr: "https://github.com/johndeveloper",
-    attendance: 98,
     pay: 45,
+    timeline: attendance,
     timeWithCompany: 18,
     pto: 15,
     flags: 0,
-    apr: 8.5,
-    ppi: 4.5,
-    success: 85,
     progress: {
       concrete: {
         "Clean-Up": 75,

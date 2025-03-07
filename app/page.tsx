@@ -8,13 +8,37 @@ import {Timeline} from '@/components/Timeline';
 import { EmploymentMetrics } from '@/components/EmploymentMetrics';
 import { CareerSnapshot } from '@/components/CareerSnapshot';
 import { TalentProgress } from '@/components/TalentProgress';
-import { CareerTotality } from '@/components/CareerTotality';
-// import { ThemeToggle } from '@/components/ThemeToggle';
+// @ts-ignore
+import CareerTotality from "@/components/CareerTotality";
+import { ThemeToggle } from '@/components/ThemeToggle';
 import { SectionDivider } from '@/components/SectionDivider';
 import About from "@/components/About";
+// import {WageChart} from "@/components/WageChart";
+import {attendance} from "@/app/api/employee/updated_attendance_data";
 
 export default function Home() {
-  const [employee, setEmployee] = useState(null);
+  interface Employee {
+    timeline: any; // Replace 'any' with the correct type for 'timeline'
+    firstName: string;
+    lastName: string;
+    address: string;
+    city: string;
+    state: string;
+    email: string;
+    phone: string;
+    qr: string;
+    badges: {
+      name: string;
+      img: string;
+      primaryColor: string;
+      value: number;
+      date: string;
+      note: string;
+      earned: boolean;
+    }[];
+  }
+
+  const [employee, setEmployee] = useState<Employee | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -51,18 +75,25 @@ export default function Home() {
     );
   }
 
+  // @ts-ignore
+  const { timeline, ...rest } = employee;
+
+  const { badges } = employee;
+  // console.log(badges)
+  // @ts-ignore
   return (
-    <div className="min-h-screen bg-[#2e2c2c] flex justify-center">
+    <div id={`root`} className="min-h-screen bg-[#2e2c2c] flex justify-center">
       <div id="employee-container">
-        {/* <div className="absolute top-5 right-5">
+       <div className="absolute top-5 right-5">
           <ThemeToggle />
-        </div> */}
+        </div>
         <Header employee={employee} />
         <About employee={employee} />
         <SectionDivider />
-        <Badges employee={employee} />
+        {badges && <Badges employee={employee}/>}
         <SectionDivider />
-        <Timeline employee={employee} height={220} />
+        <Timeline employee={attendance} height={320} />
+        {/*<WageChart employee={attendance} height={220} />*/}
         <SectionDivider />
         <CareerOverview employee={employee} />
         <SectionDivider />
@@ -70,9 +101,9 @@ export default function Home() {
         <SectionDivider />
         <CareerSnapshot employee={employee} />
         <SectionDivider />
-        <TalentProgress/>
-        <SectionDivider />
-        <CareerTotality employee={employee} />
+        <TalentProgress employee={attendance} />
+          <CareerTotality employee={employee} />
+        {/*<CareerTotality employee={employee} />*/}
       </div>
     </div>
   );

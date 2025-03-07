@@ -19,29 +19,10 @@ export function CareerOverview({ employee }) {
   };
 
   return (
-    <section className="">
-      <h2 className="section-title text-center">Career Overview</h2>
+    <section className="dashboard-section">
+      <h2 className="section-title-no-indent text-center">Career Overview</h2>
       {/* Labels and Visualization */}
-      <div className="mb-8">
-        {/* Labels */}
-        <div className="relative h-6 mb-2">
-          {employee.work.map((item, index) => {
-            const startPosition = getLabelPosition(index);
-            const width = parseFloat(item.percent);
-
-            return (
-              <div
-                key={item.name}
-                className="absolute text-sm transform -translate-x-1/2"
-                style={{
-                  left: `${startPosition + (width / 2)}%`,
-                }}
-              >
-                <span className="text-gray-600 dark:text-gray-400">{item.name}</span>
-              </div>
-            );
-          })}
-        </div>
+      <div className="">
 
         {/* Visualization Bar */}
         <div className="h-10 w-full flex rounded-full overflow-hidden relative">
@@ -52,7 +33,7 @@ export function CareerOverview({ employee }) {
             return (
               <div
                 key={item.name}
-                className={`${colors[index].bg} h-full flex items-center justify-center transition-all
+                className={`${colors[index].bg} h-full flex items-center justify-start pl-3 transition-all
                   ${isFirst ? 'rounded-l-full' : ''} 
                   ${isLast ? 'rounded-r-full' : ''}`}
                 style={{ width: `${item.percent}%` }}
@@ -61,6 +42,25 @@ export function CareerOverview({ employee }) {
                   {item.percent}%
                 </span>
               </div>
+            );
+          })}
+        </div>
+        {/* Labels */}
+        <div className="relative h-6 mt-3">
+          {employee.work.map((item, index) => {
+            const startPosition = getLabelPosition(index);
+            const width = parseFloat(item.percent);
+
+            return (
+                <div
+                    key={item.name}
+                    className="absolute text-sm transform -translate-x-1/2"
+                    style={{
+                      left: `${startPosition + (width / 2)}%`,
+                    }}
+                >
+                  <span className="text-gray-600 dark:text-gray-400 capitalize">{item.name}</span>
+                </div>
             );
           })}
         </div>

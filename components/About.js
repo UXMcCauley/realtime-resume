@@ -6,7 +6,7 @@ export default function About({employee}) {
             {/* Bio Section */}
             {employee.bio && (
                 <div className="space-y-2 w-1/3">
-                    <h3 className="section-title">Bio</h3>
+                    <h3 className="section-title-no-indent">Bio</h3>
                     <p className="text-sm text-gray-600 dark:text-gray-400">
                         {employee.bio.length > 300 ? `${employee.bio.substring(0, 297)}...` : employee.bio}
                     </p>
@@ -16,7 +16,7 @@ export default function About({employee}) {
             {/* Education Section */}
             {employee.education && employee.education.length > 0 && (
                 <div className="space-y-2 w-1/3 ml-12 pl-12">
-                    <h3 className="section-title">Education</h3>
+                    <h3 className="section-title-no-indent">Education</h3>
                     <div className="space-y-3">
                         {employee.education.map((edu, index) => (
                             <div key={index} className="text-sm">
@@ -34,7 +34,7 @@ export default function About({employee}) {
             {/* Certifications Section */}
             {employee.certifications && employee.certifications.length > 0 && (
                 <div className="space-y-2 w-1/3 ml-12 pl-12">
-                    <h3 className="section-title">Certifications</h3>
+                    <h3 className="section-title-no-indent">Certifications</h3>
                     <div className="space-y-3">
                         {employee.certifications.map((cert, index) => (
                             <div key={index} className="text-sm">

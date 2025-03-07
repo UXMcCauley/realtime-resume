@@ -6,7 +6,7 @@ export function EmploymentMetrics({ employee }) {
   const formatTime = (months) => {
     const years = Math.floor(months / 12);
     const remainingMonths = months % 12;
-    return years > 0 
+    return years > 0
       ? `${years}y ${remainingMonths}m`
       : `${remainingMonths}m`;
   };
@@ -14,23 +14,23 @@ export function EmploymentMetrics({ employee }) {
   const formatFlags = (count) => count.toString();
 
   const metrics = [
-    { 
+    {
       label: 'Attendance',
       value: formatPercentage(employee.attendance || 98)
     },
-    { 
+    {
       label: 'Hourly Rate',
       value: formatCurrency(employee.pay || 45)
     },
-    { 
+    {
       label: 'Time w/ Company',
       value: formatTime(employee.timeWithCompany || 18)
     },
-    { 
+    {
       label: 'PTO',
       value: formatPTO(employee.pto || 15)
     },
-    { 
+    {
       label: 'Employer Flags',
       value: formatFlags(employee.flags || 0)
     }
@@ -38,11 +38,11 @@ export function EmploymentMetrics({ employee }) {
 
   return (
     <section className="dashboard-section">
-      <h2 className="section-title">Employment Metrics</h2>
-      <div className="flex justify-around items-center">
+      <h2 className="section-title-no-indent">Employment Metrics</h2>
+      <div className="flex justify-between items-center">
         {metrics.map((metric) => (
-          <div 
-            key={metric.label} 
+          <div
+            key={metric.label}
             className="flex flex-col items-center"
           >
             <span className="text-sm text-gray-400 mb-1">{metric.label}</span>

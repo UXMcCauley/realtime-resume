@@ -1,30 +1,27 @@
-export function CareerTotality({ employee }) {
-  return (
-    <section className="dashboard-section">
-      <h2 className="section-title">Career Totality</h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="space-y-3">
-          <h3 className="font-medium">Education</h3>
-          <div className="text-sm space-y-2">
-            <p>MSc Computer Science</p>
-            <p>BSc Software Engineering</p>
-          </div>
-        </div>
-        <div className="space-y-3">
-          <h3 className="font-medium">Certifications</h3>
-          <div className="text-sm space-y-2">
-            <p>AWS Solutions Architect</p>
-            <p>Google Cloud Professional</p>
-          </div>
-        </div>
-        <div className="space-y-3">
-          <h3 className="font-medium">Industry Impact</h3>
-          <div className="text-sm space-y-2">
-            <p>3 Conference Talks</p>
-            <p>5 Published Articles</p>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
+import * as React from "react";
+import * as ReactDOM from "react-dom";
+import { CareerTreeMap } from "./CareerTreeMap"; // Import the new component
+
+const data = [
+    { Category: "Employees", Country: "USA", JobDescription: "Sales", JobGroup: "Executive", EmployeesCount: 20 },
+    { Category: "Employees", Country: "USA", JobDescription: "Sales", JobGroup: "Analyst", EmployeesCount: 30 },
+    { Category: "Employees", Country: "USA", JobDescription: "Marketing", JobGroup: "Advertising", EmployeesCount: 40 },
+    { Category: "Employees", Country: "USA", JobDescription: "Management", JobGroup: "Lead", EmployeesCount: 80 },
+    { Category: "Employees", Country: "India", JobDescription: "Technical", JobGroup: "Testers", EmployeesCount: 100 },
+    { Category: "Employees", Country: "India", JobDescription: "HR Executives", JobGroup: "Recruiters", EmployeesCount: 30 },
+    { Category: "Employees", Country: "India", JobDescription: "Accounts", JobGroup: "Finance", EmployeesCount: 40 },
+    { Category: "Employees", Country: "Germany", JobDescription: "Sales", JobGroup: "Executive", EmployeesCount: 50 },
+    { Category: "Employees", Country: "Germany", JobDescription: "Sales", JobGroup: "Analyst", EmployeesCount: 60 },
+    { Category: "Employees", Country: "Germany", JobDescription: "Marketing", JobGroup: "Advertising", EmployeesCount: 70 },
+    { Category: "Employees", Country: "Germany", JobDescription: "Technical", JobGroup: "Testers", EmployeesCount: 80 },
+    { Category: "Employees", Country: "Germany", JobDescription: "Management", JobGroup: "Lead", EmployeesCount: 10 },
+    { Category: "Employees", Country: "Germany", JobDescription: "Accounts", JobGroup: "Finance", EmployeesCount: 20 },
+];
+
+const container = document.getElementById("root");
+if (container) {
+    const root = ReactDOM.createRoot(container);
+    root.render(<CareerTreeMap data={data} />);
+} else {
+    console.error("Root element not found");
 }

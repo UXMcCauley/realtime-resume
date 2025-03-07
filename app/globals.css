@@ -75,7 +75,7 @@
 
 #employee-container {
   background: #171717;
-  @apply w-[960px] mt-[30px] rounded-lg shadow-xl overflow-visible;
+  @apply w-[960px] my-[30px] rounded-lg shadow-xl overflow-visible;
 }
 
 .dashboard-section {
@@ -84,6 +84,10 @@
 
 .section-title {
   @apply text-2xl font-extralight text-gray-800 dark:text-gray-100 text-left w-full mb-6 ml-6;
+}
+
+.section-title-no-indent {
+  @apply text-2xl font-extralight text-gray-800 dark:text-gray-100 text-left w-full mb-6;
 }
 
 .swiper-image {
@@ -95,7 +99,7 @@
 }
 
 .badge-overlay {
-  @apply absolute top-0 left-0 right-0 bottom-0 inset-0 bg-black/90 z-[60] flex items-center justify-center cursor-pointer;
+  @apply fixed top-0 left-0 right-0 bottom-0 inset-0 bg-black/90 z-[60] flex items-center justify-center cursor-pointer;
 }
 
 .badge-overlay-number {
@@ -141,24 +145,45 @@
 }
 
 .recharts-surface {
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 0;
+  border: 1px solid rgba(140, 140, 140, 0.1);
+  padding: 20px 0;
 }
 
 .recharts-surface:focus {
   outline: none !important;
 }
 .recharts-button {
-  padding: 20px 30px 12px 12px;
-  border: 1px solid  rgba(255, 255, 255, 0.1);
+  padding: 8px 12px;
+  border: 1px solid  rgba(140, 140, 140, 0.1);
   border-bottom: none;
   text-align: left;
+  min-width: 100px;
 }
 .recharts-button:not(:last-child) {
   border-right: none;
 }
-.recharts-button[data-active="true"] {
-  background: rgba(255, 255, 255, 0.1);
+.recharts-button[data-active="true"].recharts-button[data-key="sp"] {
+  background: #3ab286;
+}
+.recharts-button[data-active="true"].recharts-button[data-key="ppi"] {
+  background: #e08832;
+}
+.recharts-button[data-active="true"].recharts-button[data-key="apr"] {
+  background: #db366e;
+}
+.recharts-button[data-active="true"].recharts-button[data-key="wage"] {
+  background: #a955d4;
+}
+.recharts-button[data-active="true"].recharts-button[data-key="attendance_percentage"] {
+  background: #275fd2;
+}
+
+.recharts-responsive-container {
+  background: rgba(14, 14, 14, 0.73);
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(140, 140, 140, 0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
 }
 
 .recharts-responsive-container,

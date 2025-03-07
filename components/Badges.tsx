@@ -79,7 +79,7 @@ export function Badges({ employee }: { employee: { badges: { name: string; img: 
               <SwiperSlide key={badge.name} className="!w-[105px]">
                 <div
                   onClick={() => {
-                    console.log(badge)
+                    // console.log(badge)
                     setSelectedBadge(badge)
                   }}
                   className={`swiper-image ${badge.earned ? '' : 'inactive'}`}
