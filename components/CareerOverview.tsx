@@ -136,10 +136,10 @@ const CareerOverview: React.FC<CareerOverviewProps> = ({ progress }) => {
 
     return (
         <Card className="dashboard-section">
-            <CardHeader className="career-overview-header flex flex-row h-full justify-start items-center space-y-0 border-b p-0 sm:flex-row">
+            <CardHeader className="career-overview-header flex flex-row h-full justify-between items-center space-y-0 border-b p-0 sm:flex-row">
                 <CardTitle className="section-title-no-indent">Career Overview</CardTitle>
                 <div className={`ml-3 font-extralight`}>
-                    {viewingLabel === "" ? '' : 'Viewing: '} {viewingLabel}
+                    {viewingLabel === "" ? '' : <span className={`text-gray-300 text-sm`}>Viewing: </span>} {viewingLabel}
                 </div>
 
             </CardHeader>
@@ -147,14 +147,14 @@ const CareerOverview: React.FC<CareerOverviewProps> = ({ progress }) => {
                 {/* Progress Bar */}
                 {!viewingOther ? (
                     <div style={{ position: "relative" }}>
-                        <div style={{ display: "flex", height: "40px", background: "#ddd", borderRadius: "20px", overflow: "hidden" }}>
+                        <div className={``} style={{ display: "flex", height: "40px", background: "transparent", borderRadius: "20px", overflow: "visible" }}>
                             {filteredDisplayData.map((segment, index) => (
                                 <div
                                     key={index}
                                     onClick={() => handleIndustryClick(segment.name, segment.level)}
-                                    onMouseMove={(event) => handleMouseMove(event, segment.name)}
+                                    onMouseMove={(event) => handleMouseMove(event, segment.name + " " + segment.percentage.toFixed(0) + "%")}
                                     onMouseLeave={handleMouseLeave}
-                                    className={`text-center cursor-pointer capitalize text-xs font-light flex items-center justify-center`}
+                                    className={`progress-segment-container text-center cursor-pointer capitalize text-xs font-light flex items-center justify-center flex-col relative`}
                                     style={{
                                         width: segment.percentage + "%",
                                         padding: "5px",
@@ -163,12 +163,12 @@ const CareerOverview: React.FC<CareerOverviewProps> = ({ progress }) => {
                                         cursor: "pointer",
                                     }}
                                 >
-                                    <div>
-                                        {segment.percentage.toFixed(0)}{segment.percentage < 5 ? '' : '%'}
+                                    <div>{segment.percentage.toFixed(0)}%</div>
+                                    <div className={`progress-under-label`}>
+                                        <div className={`w-full text-center`}>{segment.name}</div>
                                     </div>
                                 </div>
-                                // <div className={`p-2 bg-gray-800 capitalize`}>{segment.name}</div>
-                    ))}
+                            ))}
                         </div>
                     </div>
                 ) : (
@@ -197,18 +197,18 @@ const CareerOverview: React.FC<CareerOverviewProps> = ({ progress }) => {
                 )}
 
                 {/* Floating Tooltip for Skill Names */}
-                {hoveredSkill && (
-                    <div
-                        className="career-overview-skill-hover absolute bg-black text-white px-2 py-1 rounded shadow-lg text-xs z-20 border "
-                        style={{
-                            left: `${tooltipPosition.x}px`,
-                            top: `${tooltipPosition.y}px`,
-                            pointerEvents: "none",
-                        }}
-                    >
-                        {hoveredSkill}
-                    </div>
-                )}
+                {/*{hoveredSkill && (*/}
+                {/*    <div*/}
+                {/*        className="career-overview-skill-float absolute bg-black text-white px-2 py-1 rounded shadow-lg text-xs z-20 border capitalize"*/}
+                {/*        style={{*/}
+                {/*            left: `${tooltipPosition.x}px`,*/}
+                {/*            top: `${tooltipPosition.y}px`,*/}
+                {/*            pointerEvents: "none",*/}
+                {/*        }}*/}
+                {/*    >*/}
+                {/*        {hoveredSkill}*/}
+                {/*    </div>*/}
+                {/*)}*/}
             </CardContent>
         </Card>
     );

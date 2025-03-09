@@ -91,11 +91,37 @@
 }
 
 .career-overview-header {
-  @apply flex items-baseline justify-start gap-2 w-full mb-2;
+  @apply flex items-baseline justify-between gap-2 w-full mb-2 capitalize;
 }
 
-.career-overview-skill-hover {
-  @apply flex flex-row bg-black rounded-lg p-2 text-white text-sm;
+.career-overview-skill-float {
+  @apply flex flex-row bg-gray-800 rounded text-white text-sm absolute p-3 shadow-lg z-20 border border-gray-700 capitalize;
+}
+
+.progress-under-label {
+  width: 100%;
+  height: 100%;
+  font-size: 11px;
+  white-space: wrap;
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  display: flex;
+  align-items: start;
+  bottom: -52px;
+  opacity: 0.4;
+}
+.progress-under-label:hover {
+  opacity: 1;
+}
+
+.progress-segment-container:first-child {
+  @apply rounded-l-full;
+}
+
+.progress-segment-container:last-child {
+  @apply rounded-r-full;
 }
 
 #talent-select {
