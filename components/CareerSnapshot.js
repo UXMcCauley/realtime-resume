@@ -23,52 +23,52 @@ export function CareerSnapshot({ employee }) {
 
   return (
     <section className="dashboard-section">
-      <h2 className="section-title">Career Snapshot</h2>
-      <div className="flex gap-4">
-        {/* APR Gauge */}
-        <div className="flex flex-1 flex-col items-center">
-          <div className="relative w-40 h-24">
-            {/* Gauge Background */}
-            <div className="absolute bottom-0 w-[200px] h-[100px] rounded-t-full overflow-visible bg-[#000000] bg-opacity-30 ">
-              {/* Gauge Marks */}
-              {aprMarks.map((mark) => (
+      {/*<h2 className="section-title">Career Snapshot</h2>*/}
+      <div className="grid grid-cols-3 items-center h-[210px] gap-8">
+        <div className={`relative h-full w-full`}>
+          {/* APR Gauge */}
+          <div className={`absolute top-0 left-[0] w-full`}>
+            <div className={`text-3xl text-center`}>APR</div>
+            <div className={`w-full text-sm text-center font-light -mt-1 text-gray-400`}>Average Performance Rating</div>
+          </div>
+          {/* Gauge Background */}
+          <div className="absolute w-[194px] h-[133px] rounded-t-full overflow-visible bottom-[10px] left-[37px]">
+            <div className={`w-full text-[44px] text-center mt-10`}>{(employee.timeline[employee.timeline.length - 1].apr).toFixed(1)}</div>
+            {/* Gauge Marks */}
+            {aprMarks.map((mark) => (
                 <div
-                  key={mark}
-                  className="absolute bottom-0 left-1/2 origin-bottom"
-                  style={{
-                    height: '100%',
-                    width: '2px',
-                    transform: `rotate(${(mark / 10) * 180 - 90}deg)`,
-                  }}
+                    key={mark}
+                    className="absolute bottom-0 left-1/2 origin-bottom"
+                    style={{
+                      height: '100%',
+                      width: '2px',
+                      transform: `rotate(${(mark / 10) * 180 - 90}deg)`,
+                    }}
                 >
                   <div
-                    className="w-[12px] h-[1rem] rounded -ml-[6px]"
-                    style={{
-                      background: `hsl(${mark * 12}, 70%, 50%)`
-                    }}
+                      className="w-[12px] h-[1rem] rounded -ml-[6px]"
+                      style={{
+                        background: `hsl(${mark * 12}, 70%, 50%)`
+                      }}
                   />
                 </div>
-              ))}
-              {/* Needle */}
-              <div
-                className="absolute bottom-0 left-1/2 w-1 h-[90px] bg-white origin-bottom transition-transform duration-1000"
+            ))}
+            {/* Needle */}
+            <div
+                className="absolute bottom-0 left-1/2 w-1 h-[130px] bg-white origin-bottom transition-transform duration-1000"
                 style={{
                   transform: `rotate(${aprAngle - 90}deg)`,
                 }}
-              >
-                <div className="absolute top-[82px] -left-1 w-3 h-3 bg-white rounded-full" />
-              </div>
+            >
+              <div className="absolute top-[122px] -left-1 w-4 h-4 bg-white rounded-full"/>
             </div>
 
           </div>
-          <div className={`flex items-center w-full justify-between mt-2 text-sm `}>
-            <div className="">APR</div>
-            <div className="">{(employee.timeline[employee.timeline.length - 1].apr ).toFixed(1)}%</div>
-          </div>
         </div>
 
+
         {/* PPI Stars */}
-        <div className="flex flex-col flex-1 items-center">
+        <div className="flex flex-col items-center flex-1 border h-full">
           <span className="text-sm text-gray-400 mb-2">PPI</span>
           <div className="flex gap-1">
             {[...Array(fullStars)].map((_, i) => (
@@ -83,32 +83,35 @@ export function CareerSnapshot({ employee }) {
         </div>
 
         {/* Success Probability */}
-        <div className="flex flex-col flex-1 items-center bg-[#000000] bg-opacity-15 h-full rounded-lg p-4">
-          <span className="text-sm text-gray-400 mb-2">Success Probability</span>
-          <div className="relative w-full h-8 bg-gray-800 rounded-full overflow-hidden">
-            {/* Segments */}
-            <div className="absolute inset-0 flex">
-              {successSegments.map((segment, index) => (
-                <div
-                  key={segment.label}
-                  className="flex-1 border-r last:border-r-0 border-gray-700 flex items-center justify-center"
-                >
-                  <span className="text-xs text-gray-400">{segment.label}</span>
-                </div>
-              ))}
+        <div className="border h-full">
+          <div className="flex flex-col items-center bg-opacity-15 h-full rounded-lg w-full">
+            <span className="text-sm text-gray-400 mb-2">Success Probability</span>
+            <div className="relative w-full h-8 bg-gray-800 rounded-full overflow-hidden">
+              {/* Segments */}
+              <div className="absolute inset-0 flex">
+                {successSegments.map((segment, index) => (
+                    <div
+                        key={segment.label}
+                        className="flex-1 border-r last:border-r-0 border-gray-700 flex items-center justify-center"
+                    >
+                      <span className="text-xs text-gray-400">{segment.label}</span>
+                    </div>
+                ))}
+              </div>
+              {/* Progress Bar */}
+              <div
+                  className="absolute inset-y-0 left-0 bg-gradient-to-r from-red-500 via-yellow-500 to-green-500 transition-all duration-1000"
+                  style={{ width: `${employee.timeline[employee.timeline.length - 1].sp*10}%` }}
+              />
+              {/* Marker */}
+              <div
+                  className="absolute top-0 w-0.5 h-full bg-white"
+                  style={{ left: `${employee.timeline[employee.timeline.length - 1].sp*10}%` }}
+              />
             </div>
-            {/* Progress Bar */}
-            <div
-              className="absolute inset-y-0 left-0 bg-gradient-to-r from-red-500 via-yellow-500 to-green-500 transition-all duration-1000"
-              style={{ width: `${employee.timeline[employee.timeline.length - 1].sp*10}%` }}
-            />
-            {/* Marker */}
-            <div
-              className="absolute top-0 w-0.5 h-full bg-white"
-              style={{ left: `${employee.timeline[employee.timeline.length - 1].sp*10}%` }}
-            />
+            <div className="mt-2 text-2xl font-bold">{(employee.timeline[employee.timeline.length - 1].sp*10).toFixed(0)}%</div>
           </div>
-          <div className="mt-2 text-2xl font-bold">{(employee.timeline[employee.timeline.length - 1].sp*10).toFixed(0)}%</div>
+
         </div>
       </div>
     </section>
