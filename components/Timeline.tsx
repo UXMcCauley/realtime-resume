@@ -46,7 +46,7 @@ const chartConfig = {
 
 export function Timeline({employee, height}: { employee: { attendance_percentage: number }[], height?: number, dataMin?: number }) {
     const [activeChart, setActiveChart] =
-        React.useState<keyof typeof chartConfig | null>(null)
+        React.useState<keyof typeof chartConfig | null>("attendance_percentage")
     const total = React.useMemo(
         () => ({
             attendance_percentage: employee[employee.length - 1].attendance_percentage,

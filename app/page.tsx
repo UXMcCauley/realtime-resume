@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Header } from '@/components/Header';
-import { CareerOverview } from '@/components/CareerOverview';
+import CareerOverview from '@/components/CareerOverview';
 import { Badges } from '@/components/Badges';
 import {Timeline} from '@/components/Timeline';
 import { EmploymentMetrics } from '@/components/EmploymentMetrics';
@@ -15,7 +15,7 @@ import { SectionDivider } from '@/components/SectionDivider';
 import About from "@/components/About";
 import {attendance} from "@/app/api/employee/updated_attendance_data";
 
-export default function Home() {
+  export default function Home() {
   interface Employee {
     timeline: any; // Replace 'any' with the correct type for 'timeline'
     firstName: string;
@@ -35,6 +35,11 @@ export default function Home() {
       note: string;
       earned: boolean;
     }[];
+    progress: {
+        carpenter: { level: number; completed: boolean };
+        roofing: { level: number; completed: boolean };
+        concrete: { level: number; completed: boolean };
+      }; // Updated progress property
   }
 
   const [employee, setEmployee] = useState<Employee | null>(null);
@@ -94,7 +99,8 @@ export default function Home() {
         <Timeline employee={attendance} height={320} />
         {/*<WageChart employee={attendance} height={220} />*/}
         <SectionDivider />
-        <CareerOverview employee={employee} />
+        {/*<CareerOverview progress={employee.progress} />*/}
+          {employee.progress ? <CareerOverview progress={employee.progress} /> : <div>Loading progress...</div>}
         <SectionDivider />
         <EmploymentMetrics employee={employee} />
         <SectionDivider />

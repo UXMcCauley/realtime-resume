@@ -1,0 +1,648 @@
+{
+  "carpenter": [
+    {
+      "skill": "Building Gables",
+      "requirement": [
+        {
+          "lv": 1,
+          "amount": 100,
+          "type": "hours"
+        },
+        {
+          "lv": 2,
+          "amount": 200,
+          "type": "hours"
+        },
+        {
+          "lv": 3,
+          "amount": 300,
+          "type": "hours"
+        }
+      ]
+    },
+    {
+      "skill": "Building Stair Systems",
+      "requirement": [
+        {
+          "lv": 1,
+          "amount": 75,
+          "type": "hours"
+        },
+        {
+          "lv": 2,
+          "amount": 150,
+          "type": "hours"
+        },
+        {
+          "lv": 3,
+          "amount": 225,
+          "type": "hours"
+        }
+      ]
+    },
+    {
+      "skill": "Building Walls",
+      "requirement": [
+        {
+          "lv": 1,
+          "amount": 500,
+          "type": "hours"
+        },
+        {
+          "lv": 2,
+          "amount": 1000,
+          "type": "hours"
+        },
+        {
+          "lv": 3,
+          "amount": 1500,
+          "type": "hours"
+        }
+      ]
+    },
+    {
+      "skill": "Clean-Up",
+      "requirement": [
+        {
+          "lv": 1,
+          "amount": 100,
+          "type": "hours"
+        },
+        {
+          "lv": 2,
+          "amount": 200,
+          "type": "hours"
+        },
+        {
+          "lv": 3,
+          "amount": 300,
+          "type": "hours"
+        }
+      ]
+    },
+    {
+      "skill": "Exterior Wall Sheeting",
+      "requirement": [
+        {
+          "lv": 1,
+          "amount": 100,
+          "type": "hours"
+        },
+        {
+          "lv": 2,
+          "amount": 200,
+          "type": "hours"
+        },
+        {
+          "lv": 3,
+          "amount": 300,
+          "type": "hours"
+        }
+      ]
+    },
+    {
+      "skill": "Floor Decking",
+      "requirement": [
+        {
+          "lv": 1,
+          "amount": 100,
+          "type": "hours"
+        },
+        {
+          "lv": 2,
+          "amount": 200,
+          "type": "hours"
+        },
+        {
+          "lv": 3,
+          "amount": 300,
+          "type": "hours"
+        }
+      ]
+    },
+    {
+      "skill": "Installing Tyvek",
+      "requirement": [
+        {
+          "lv": 1,
+          "amount": 100,
+          "type": "hours"
+        },
+        {
+          "lv": 2,
+          "amount": 200,
+          "type": "hours"
+        },
+        {
+          "lv": 3,
+          "amount": 300,
+          "type": "hours"
+        }
+      ]
+    },
+    {
+      "skill": "Layouts",
+      "requirement": [
+        {
+          "lv": 1,
+          "amount": 50,
+          "type": "hours"
+        },
+        {
+          "lv": 2,
+          "amount": 100,
+          "type": "hours"
+        },
+        {
+          "lv": 3,
+          "amount": 150,
+          "type": "hours"
+        }
+      ]
+    },
+    {
+      "skill": "Misc Carpentry",
+      "requirement": [
+        {
+          "lv": 1,
+          "amount": 125,
+          "type": "hours"
+        },
+        {
+          "lv": 2,
+          "amount": 250,
+          "type": "hours"
+        },
+        {
+          "lv": 3,
+          "amount": 375,
+          "type": "hours"
+        }
+      ]
+    },
+    {
+      "skill": "Moving Material",
+      "requirement": [
+        {
+          "lv": 1,
+          "amount": 100,
+          "type": "hours"
+        },
+        {
+          "lv": 2,
+          "amount": 200,
+          "type": "hours"
+        },
+        {
+          "lv": 3,
+          "amount": 300,
+          "type": "hours"
+        }
+      ]
+    },
+    {
+      "skill": "Roof Sheeting",
+      "requirement": [
+        {
+          "lv": 1,
+          "amount": 100,
+          "type": "hours"
+        },
+        {
+          "lv": 2,
+          "amount": 200,
+          "type": "hours"
+        },
+        {
+          "lv": 3,
+          "amount": 300,
+          "type": "hours"
+        }
+      ]
+    },
+    {
+      "skill": "Set-Up",
+      "requirement": [
+        {
+          "lv": 1,
+          "amount": 100,
+          "type": "hours"
+        },
+        {
+          "lv": 2,
+          "amount": 200,
+          "type": "hours"
+        },
+        {
+          "lv": 3,
+          "amount": 300,
+          "type": "hours"
+        }
+      ]
+    },
+    {
+      "skill": "Setting Floor Joist",
+      "requirement": [
+        {
+          "lv": 1,
+          "amount": 100,
+          "type": "hours"
+        },
+        {
+          "lv": 2,
+          "amount": 200,
+          "type": "hours"
+        },
+        {
+          "lv": 3,
+          "amount": 300,
+          "type": "hours"
+        }
+      ]
+    },
+    {
+      "skill": "Setting Trusses",
+      "requirement": [
+        {
+          "lv": 1,
+          "amount": 100,
+          "type": "hours"
+        },
+        {
+          "lv": 2,
+          "amount": 200,
+          "type": "hours"
+        },
+        {
+          "lv": 3,
+          "amount": 300,
+          "type": "hours"
+        }
+      ]
+    }
+  ],
+  "roofing": [
+    {
+      "skill": "Clean-Up",
+      "requirement": [
+        {
+          "lv": 1,
+          "amount": 300,
+          "type": "hours"
+        },
+        {
+          "lv": 2,
+          "amount": 600,
+          "type": "hours"
+        },
+        {
+          "lv": 3,
+          "amount": 900,
+          "type": "hours"
+        }
+      ]
+    },
+    {
+      "skill": "Decking/Sheeting Installation",
+      "requirement": [
+        {
+          "lv": 1,
+          "amount": 50,
+          "type": "hours"
+        },
+        {
+          "lv": 2,
+          "amount": 100,
+          "type": "hours"
+        },
+        {
+          "lv": 3,
+          "amount": 150,
+          "type": "hours"
+        }
+      ]
+    },
+    {
+      "skill": "Edge Metal Installation",
+      "requirement": [
+        {
+          "lv": 1,
+          "amount": 200,
+          "type": "feet"
+        },
+        {
+          "lv": 2,
+          "amount": 400,
+          "type": "feet"
+        },
+        {
+          "lv": 3,
+          "amount": 600,
+          "type": "feet"
+        }
+      ]
+    },
+    {
+      "skill": "In-House Practice",
+      "requirement": [
+        {
+          "lv": 1,
+          "amount": 20,
+          "type": "hours"
+        },
+        {
+          "lv": 2,
+          "amount": 40,
+          "type": "hours"
+        },
+        {
+          "lv": 3,
+          "amount": 60,
+          "type": "hours"
+        }
+      ]
+    },
+    {
+      "skill": "Lifetime Shingle Installation",
+      "requirement": [
+        {
+          "lv": 1,
+          "amount": 30,
+          "type": "hours"
+        },
+        {
+          "lv": 2,
+          "amount": 60,
+          "type": "hours"
+        },
+        {
+          "lv": 3,
+          "amount": 90,
+          "type": "hours"
+        }
+      ]
+    },
+    {
+      "skill": "Misc Roofing Work",
+      "requirement": [
+        {
+          "lv": 1,
+          "amount": 100,
+          "type": "hours"
+        },
+        {
+          "lv": 2,
+          "amount": 200,
+          "type": "hours"
+        },
+        {
+          "lv": 3,
+          "amount": 300,
+          "type": "hours"
+        }
+      ]
+    },
+    {
+      "skill": "Penetration Installation",
+      "requirement": [
+        {
+          "lv": 1,
+          "amount": 5,
+          "type": "hours"
+        },
+        {
+          "lv": 2,
+          "amount": 10,
+          "type": "hours"
+        },
+        {
+          "lv": 3,
+          "amount": 15,
+          "type": "hours"
+        }
+      ]
+    },
+    {
+      "skill": "Ridge Cap/Vent",
+      "requirement": [
+        {
+          "lv": 1,
+          "amount": 200,
+          "type": "feet"
+        },
+        {
+          "lv": 2,
+          "amount": 400,
+          "type": "feet"
+        },
+        {
+          "lv": 3,
+          "amount": 600,
+          "type": "feet"
+        }
+      ]
+    },
+    {
+      "skill": "Roofing Installation",
+      "requirement": [
+        {
+          "lv": 1,
+          "amount": 300,
+          "type": "hours"
+        },
+        {
+          "lv": 2,
+          "amount": 600,
+          "type": "hours"
+        },
+        {
+          "lv": 3,
+          "amount": 900,
+          "type": "hours"
+        }
+      ]
+    },
+    {
+      "skill": "Tear Off",
+      "requirement": [
+        {
+          "lv": 1,
+          "amount": 300,
+          "type": "hours"
+        },
+        {
+          "lv": 2,
+          "amount": 600,
+          "type": "hours"
+        },
+        {
+          "lv": 3,
+          "amount": 900,
+          "type": "hours"
+        }
+      ]
+    },
+    {
+      "skill": "Underlayment Installation",
+      "requirement": [
+        {
+          "lv": 1,
+          "amount": 150,
+          "type": "hours"
+        },
+        {
+          "lv": 2,
+          "amount": 300,
+          "type": "hours"
+        },
+        {
+          "lv": 3,
+          "amount": 450,
+          "type": "hours"
+        }
+      ]
+    },
+    {
+      "skill": "Valley Installation",
+      "requirement": [
+        {
+          "lv": 1,
+          "amount": 200,
+          "type": "feet"
+        },
+        {
+          "lv": 2,
+          "amount": 400,
+          "type": "feet"
+        },
+        {
+          "lv": 3,
+          "amount": 600,
+          "type": "feet"
+        }
+      ]
+    }
+  ],
+  "concrete": [
+    {
+      "skill": "Clean-Up",
+      "requirement": [
+        {
+          "lv": 1,
+          "amount": 50,
+          "type": "hours"
+        },
+        {
+          "lv": 2,
+          "amount": 100,
+          "type": "hours"
+        },
+        {
+          "lv": 3,
+          "amount": 150,
+          "type": "hours"
+        }
+      ]
+    },
+    {
+      "skill": "Moving Gravel",
+      "requirement": [
+        {
+          "lv": 1,
+          "amount": 250,
+          "type": "hours"
+        },
+        {
+          "lv": 2,
+          "amount": 500,
+          "type": "hours"
+        },
+        {
+          "lv": 3,
+          "amount": 750,
+          "type": "hours"
+        }
+      ]
+    },
+    {
+      "skill": "Puddling",
+      "requirement": [
+        {
+          "lv": 1,
+          "amount": 250,
+          "type": "hours"
+        },
+        {
+          "lv": 2,
+          "amount": 500,
+          "type": "hours"
+        },
+        {
+          "lv": 3,
+          "amount": 750,
+          "type": "hours"
+        }
+      ]
+    },
+    {
+      "skill": "Pulling Forms",
+      "requirement": [
+        {
+          "lv": 1,
+          "amount": 200,
+          "type": "hours"
+        },
+        {
+          "lv": 2,
+          "amount": 400,
+          "type": "hours"
+        },
+        {
+          "lv": 3,
+          "amount": 600,
+          "type": "hours"
+        }
+      ]
+    },
+    {
+      "skill": "Set-Up",
+      "requirement": [
+        {
+          "lv": 1,
+          "amount": 50,
+          "type": "hours"
+        },
+        {
+          "lv": 2,
+          "amount": 100,
+          "type": "hours"
+        },
+        {
+          "lv": 3,
+          "amount": 150,
+          "type": "hours"
+        }
+      ]
+    },
+    {
+      "skill": "Setting Forms",
+      "requirement": [
+        {
+          "lv": 1,
+          "amount": 200,
+          "type": "hours"
+        },
+        {
+          "lv": 2,
+          "amount": 400,
+          "type": "hours"
+        },
+        {
+          "lv": 3,
+          "amount": 600,
+          "type": "hours"
+        }
+      ]
+    }
+  ]
+}

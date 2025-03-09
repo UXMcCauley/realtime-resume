@@ -1,7 +1,16 @@
 "use client"
-
+import * as React from "react";
 import { TrendingUp } from "lucide-react"
 import { Bar, BarChart, CartesianGrid, XAxis } from "recharts"
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 
 import {
   Card,
@@ -11,12 +20,14 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart"
+
 const chartData = [
   { month: "January", desktop: 186, mobile: 80 },
   { month: "February", desktop: 305, mobile: 200 },
@@ -39,11 +50,19 @@ const chartConfig = {
 
 export function TalentProgress({employee, height}: { employee: { attendance_percentage: number }[], height?: number, dataMin?: number}) {
   return (
-      <Card>
-        <CardHeader>
-          <CardTitle>Bar Chart - Multiple</CardTitle>
-          <CardDescription>January - June 2024</CardDescription>
+      <Card className={`dashboard-section border-1 border-white  rounded-lg shadow-lg`} >
+        <CardHeader className="flex flex-row h-full justify-between space-y-0 border-b p-0 sm:flex-row items-center">
+          <div className="section-title-no-indent flex h-full flex-col w-3/5 justify-center gap-1 px-6 py-0 sm:py-6">
+            <CardTitle className={`mb-0 pb-0`}>Talent Card Progress</CardTitle>
+            <CardDescription className={`text-xs text-muted-foreground mt-0 font-extralight`}>
+                View progress of talent mastery by skills in the talent card.
+            </CardDescription>
+          </div>
+          <select name="talent-select" id="talent-select" className="">
+            <option value="">All</option>
+          </select>
         </CardHeader>
+
         <CardContent>
           <ChartContainer config={chartConfig}>
             <BarChart accessibilityLayer data={chartData}>
