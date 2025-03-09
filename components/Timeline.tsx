@@ -44,16 +44,16 @@ const chartConfig = {
     },
 } satisfies ChartConfig
 
-export function Timeline({employee, height}: { employee: { attendance_percentage: number }[], height?: number, dataMin?: number }) {
+export function TimelineGraphs({employee, height}: { employee: { attendance_percentage: number; wage: number; apr: number; ppi: number; sp: number }[], height?: number, dataMin?: number }) {
     const [activeChart, setActiveChart] =
         React.useState<keyof typeof chartConfig | null>("attendance_percentage")
     const total = React.useMemo(
         () => ({
-            attendance_percentage: employee[employee.length - 1].attendance_percentage,
-            wage: employee.reduce(acc => acc, 0),
-            apr: employee.reduce(acc => acc + 10, 0) ,
-            ppi: 10,
-            sp: 100,
+            attendance_percentage: employee[employee.length - 1].attendance_percentage+"%",
+            wage: "$"+employee[employee.length-1].wage.toFixed(2),
+            apr: employee[employee.length - 1]?.apr.toFixed(1) || 0,
+            ppi: employee[employee.length-1].ppi.toFixed(1),
+            sp: employee[employee.length-1].sp.toFixed(1),
         }),
         []
     )

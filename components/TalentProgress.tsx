@@ -1,74 +1,100 @@
 "use client"
 import * as React from "react";
-import { TrendingUp } from "lucide-react"
-import { Bar, BarChart, CartesianGrid, XAxis } from "recharts"
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
+import { useEffect, useState } from "react";
+import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
 
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
+} from "@/components/ui/card";
 
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from "@/components/ui/chart"
+} from "@/components/ui/chart";
 
-const chartData = [
-  { month: "January", desktop: 186, mobile: 80 },
-  { month: "February", desktop: 305, mobile: 200 },
-  { month: "March", desktop: 237, mobile: 120 },
-  { month: "April", desktop: 73, mobile: 190 },
-  { month: "May", desktop: 209, mobile: 130 },
-  { month: "June", desktop: 214, mobile: 140 },
-]
+import talentCardData from "../lib/talentCardData.json"; // Import full requirements
+
+// Function to merge `progress` with `talentCardData.json`
+const generateChartData = (industrySkills: any[], industryRequirements: any[]) => {
+  return industrySkills.map(skill => {
+    // Find the matching skill in `talentCardData.json`
+    const matchedSkill = industryRequirements.find(reqSkill => reqSkill.skill === skill.skill);
+
+    return {
+      skill: skill.skill,
+      progress: skill.hoursPerformed, // Actual hours worked
+      required: matchedSkill ? Math.max(...matchedSkill.requirement.map((req: { amount: number }) => req.amount)) : 0, // Get highest level requirement
+    };
+  });
+};
 
 const chartConfig = {
-  desktop: {
-    label: "Desktop",
+  progress: {
+    label: "Hours Performed",
     color: "hsl(var(--chart-1))",
   },
-  mobile: {
-    label: "Mobile",
+  required: {
+    label: "Max Requirement",
     color: "hsl(var(--chart-2))",
   },
-} satisfies ChartConfig
+} satisfies ChartConfig;
 
-export function TalentProgress({employee, height}: { employee: { attendance_percentage: number }[], height?: number, dataMin?: number}) {
+export function TalentProgress({ progress }: {
+  progress: {
+    carpenter: { percentageOfTotal: string; skills: Array<any> };
+    roofing: { percentageOfTotal: string; skills: Array<any> };
+    concrete: { percentageOfTotal: string; skills: Array<any> }
+  }
+}) {
+  const [chartData, setChartData] = useState<any[]>([]);
+  const [selectedIndustry, setSelectedIndustry] = useState<string>("carpenter");
+
+  useEffect(() => {
+    if (progress && progress[selectedIndustry as keyof typeof progress]) {
+      const industryData = progress[selectedIndustry as 'carpenter' | 'roofing' | 'concrete'];
+      const industryRequirements = talentCardData[selectedIndustry as keyof typeof talentCardData]; // Get matching requirements
+
+      if (industryData && industryData.skills && industryData.skills.length > 0) {
+        setChartData(generateChartData(industryData.skills, industryRequirements));
+      } else {
+        setChartData([]); // Prevent undefined errors by setting an empty array
+      }
+    }
+  }, [selectedIndustry, progress]);
+
   return (
-      <Card className={`dashboard-section border-1 border-white  rounded-lg shadow-lg`} >
+      <Card className={`dashboard-section border-1 border-white rounded-lg shadow-lg`}>
         <CardHeader className="flex flex-row h-full justify-between space-y-0 border-b p-0 sm:flex-row items-center">
           <div className="section-title-no-indent flex h-full flex-col w-3/5 justify-center gap-1 px-6 py-0 sm:py-6">
             <CardTitle className={`mb-0 pb-0`}>Talent Card Progress</CardTitle>
             <CardDescription className={`text-xs text-muted-foreground mt-0 font-extralight`}>
-                View progress of talent mastery by skills in the talent card.
+              Compare performed hours vs. required hours for each skill.
             </CardDescription>
           </div>
-          <select name="talent-select" id="talent-select" className="">
-            <option value="">All</option>
+          <select
+              name="talent-select"
+              id="talent-select"
+              className=""
+              value={selectedIndustry}
+              onChange={(e) => setSelectedIndustry(e.target.value)}
+          >
+            <option value="carpenter">Carpenter</option>
+            <option value="roofing">Roofing</option>
+            <option value="concrete">Concrete</option>
           </select>
         </CardHeader>
-
         <CardContent>
           <ChartContainer config={chartConfig}>
             <BarChart accessibilityLayer data={chartData}>
               <CartesianGrid vertical={false} />
               <XAxis
-                  dataKey="month"
+                  dataKey="skill"
                   tickLine={false}
                   tickMargin={10}
                   axisLine={false}
@@ -78,19 +104,11 @@ export function TalentProgress({employee, height}: { employee: { attendance_perc
                   cursor={false}
                   content={<ChartTooltipContent indicator="dashed" />}
               />
-              <Bar dataKey="desktop" fill="var(--color-desktop)" radius={4} />
-              <Bar dataKey="mobile" fill="var(--color-mobile)" radius={4} />
+              <Bar dataKey="progress" fill="var(--color-progress)" radius={4} />
+              <Bar dataKey="required" fill="var(--color-required)" radius={4} />
             </BarChart>
           </ChartContainer>
         </CardContent>
-        <CardFooter className="flex-col items-start gap-2 text-sm">
-          <div className="flex gap-2 font-medium leading-none">
-            Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
-          </div>
-          <div className="leading-none text-muted-foreground">
-            Showing total visitors for the last 6 months
-          </div>
-        </CardFooter>
       </Card>
-  )
+  );
 }

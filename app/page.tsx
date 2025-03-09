@@ -4,14 +4,14 @@ import { useState, useEffect } from 'react';
 import { Header } from '@/components/Header';
 import CareerOverview from '@/components/CareerOverview';
 import { Badges } from '@/components/Badges';
-import {Timeline} from '@/components/Timeline';
+import {TimelineGraphs} from '@/components/Timeline';
 import { EmploymentMetrics } from '@/components/EmploymentMetrics';
 import { CareerSnapshot } from '@/components/CareerSnapshot';
 import { TalentProgress } from '@/components/TalentProgress';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { SectionDivider } from '@/components/SectionDivider';
 import About from "@/components/About";
-import {attendance} from "@/app/api/employee/updated_attendance_data";
+// import {attendance} from "@/app/api/employee/updated_attendance_data";
 
   export default function Home() {
   interface Employee {
@@ -38,6 +38,7 @@ import {attendance} from "@/app/api/employee/updated_attendance_data";
         roofing: { level: number; completed: boolean; percentageOfTotal: string; skills: Array<any> };
         concrete: { level: number; completed: boolean; percentageOfTotal: string; skills: Array<any> };
       };
+    attendance_percentage: number;
   }
 
   const [employee, setEmployee] = useState<Employee | null>(null);
@@ -76,8 +77,6 @@ import {attendance} from "@/app/api/employee/updated_attendance_data";
       </div>
     );
   }
-  // const { timeline } = employee;
-  // const { badges } = employee;
 
   return (
       <div id="employee-container">
@@ -91,13 +90,14 @@ import {attendance} from "@/app/api/employee/updated_attendance_data";
           <SectionDivider />
           {employee.badges && <Badges employee={employee}/>}
           <SectionDivider />
-          <Timeline employee={attendance} height={320} />
+          <TimelineGraphs employee={employee.timeline} height={320} />
           <SectionDivider />
           <EmploymentMetrics employee={employee} />
           <SectionDivider />
           <CareerSnapshot employee={employee} />
           <SectionDivider />
-          <TalentProgress employee={attendance} />
+          {employee.progress ? <TalentProgress progress={employee.progress} employee={[]} /> : <div>Loading progress...</div>}
+
       </div>
   );
 }
