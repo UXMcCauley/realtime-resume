@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import {
     Card,
     CardContent,
-    CardDescription,
     CardHeader,
     CardTitle,
-} from "@/components/ui/card"
+} from "@/components/ui/card";
+
 interface Skill {
     skill: string;
     hoursPerformed: number;
@@ -25,76 +25,192 @@ interface CareerOverviewProps {
 }
 
 const colors = [
-    { bg: "bg-blue-500", text: "text-white" },
-    { bg: "bg-green-500", text: "text-white" },
-    { bg: "bg-yellow-500", text: "text-gray-900" },
-    { bg: "bg-purple-500", text: "text-white" },
-    { bg: "bg-pink-500", text: "text-white" },
+    { bg: "#275fd2", text: "text-white" },
+    { bg: "#a955d4", text: "text-white" },
+    { bg: "#db366e", text: "text-white" },
+    { bg: "#e08832", text: "text-white" },
+    { bg: "#3ab286", text: "text-white" },
 ];
+
+const assignColors = (sortedData: any[]) => {
+    let assignedColors = [];
+    let colorIndex = 0;
+
+    for (let i = 0; i < sortedData.length; i++) {
+        assignedColors.push({ ...sortedData[i], color: colors[colorIndex] });
+
+        // Move to the next color, restart if we reach the end
+        colorIndex = (colorIndex + 1) % colors.length;
+    }
+
+    return assignedColors;
+};
 
 const CareerOverview: React.FC<CareerOverviewProps> = ({ progress }) => {
     const [selectedIndustry, setSelectedIndustry] = useState<string | null>(null);
+    const [viewingOther, setViewingOther] = useState(false);
+    const [viewingLabel, setViewingLabel] = useState("");
+    const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
+    const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
 
-    const handleIndustryClick = (industry: string) => {
-        setSelectedIndustry(selectedIndustry === industry ? null : industry);
+    const handleIndustryClick = (industry: string, level: number | undefined) => {
+        if (industry === "Other") {
+            setViewingOther(!viewingOther);
+            setViewingLabel(`${selectedIndustry} > Other`);
+        } else {
+            if (level === 1) {
+                // Reset back to industries view
+                setSelectedIndustry(null);
+                setViewingLabel(""); // Reset viewingLabel when back at the top level
+            } else {
+                setSelectedIndustry(industry);
+                setViewingLabel(industry);
+            }
+            setViewingOther(false); // Reset 'Other' view when switching industries
+        }
     };
 
+    const handleMouseMove = (event: React.MouseEvent, skillName: string) => {
+        setHoveredSkill(skillName);
+        setTooltipPosition({ x: event.clientX + 15, y: event.clientY + 15 });
+    };
+
+    const handleMouseLeave = () => {
+        setHoveredSkill(null);
+    };
+
+    // Process skill breakdown
+    let displayData = selectedIndustry && progress[selectedIndustry as keyof typeof progress]
+        ? progress[selectedIndustry as keyof typeof progress].skills
+            .map((skill) => {
+                const totalIndustryHours = progress[selectedIndustry as keyof typeof progress].skills.reduce(
+                    (sum, s) => sum + s.hoursPerformed,
+                    0
+                );
+                const skillPercentage = ((skill.hoursPerformed / totalIndustryHours) * 100).toFixed(2);
+                return { name: skill.skill, percentage: parseFloat(skillPercentage), level: 1, color: { bg: undefined } }; // Skill level
+            })
+            .sort((a, b) => b.percentage - a.percentage)
+        : Object.entries(progress)
+            .map(([industry, data]) => ({
+                name: industry,
+                percentage: parseFloat(data.percentageOfTotal),
+                level: 0, // Industry level
+                color: { bg: undefined },
+            }));
+
+// Separate out small percentages into "Other"
+    let otherTotal = 0;
+    let filteredDisplayData = displayData.filter(segment => {
+        if (segment.percentage < 5) {
+            otherTotal += segment.percentage;
+            return false; // Remove from main display
+        }
+        return true;
+    });
+
+    if (otherTotal > 0) {
+        filteredDisplayData.push({ name: "Other", percentage: otherTotal, level: 2, color: { bg: undefined } }); // "Other" group level
+    }
+
+// Assign colors AFTER sorting and filtering
+    filteredDisplayData = assignColors(filteredDisplayData);
+
+// If "Other" is selected, break it down further
+    let otherSkills = displayData
+        .filter(segment => segment.percentage < 5)
+        .sort((a, b) => b.percentage - a.percentage)
+        .map(skill => ({
+            ...skill,
+            level: 1, // Skills inside "Other" remain level 1
+        }));
+
+// Adjust 'Other' segments to fill 100% width
+    const totalOtherPercentage = otherSkills.reduce((sum, skill) => sum + skill.percentage, 0);
+    otherSkills = otherSkills.map(skill => ({
+        ...skill,
+        percentage: (skill.percentage / totalOtherPercentage) * 100,
+    }));
+
+    otherSkills = assignColors(otherSkills);
+
     return (
-        <Card className={`dashboard-section border-1 border-white  rounded-lg shadow-lg`} >
-            <CardHeader className="flex flex-row h-full justify-between space-y-0 border-b p-0 sm:flex-row">
-                <div className="section-title-no-indent flex h-full flex-col justify-center gap-1 px-6 py-0 sm:py-6">
-                    <CardTitle className={`mb-0 pb-0`}>Career Overview</CardTitle>
+        <Card className="dashboard-section">
+            <CardHeader className="career-overview-header flex flex-row h-full justify-start items-center space-y-0 border-b p-0 sm:flex-row">
+                <CardTitle className="section-title-no-indent">Career Overview</CardTitle>
+                <div className={`ml-3 font-extralight`}>
+                    {viewingLabel === "" ? '' : 'Viewing: '} {viewingLabel}
                 </div>
+
             </CardHeader>
-            <CardContent className="m-0 p-0" >
+            <CardContent className="m-0 p-0">
                 {/* Progress Bar */}
-                <div style={{ display: "flex", height: "30px", background: "#ddd", borderRadius: "20px", overflow: "hidden" }}>
-                    {Object.entries(progress).map(([industry, data], index) => {
-                        const color = colors[index % colors.length]; // Loop through colors
+                {!viewingOther ? (
+                    <div style={{ position: "relative" }}>
+                        <div style={{ display: "flex", height: "40px", background: "#ddd", borderRadius: "20px", overflow: "hidden" }}>
+                            {filteredDisplayData.map((segment, index) => (
+                                <div
+                                    key={index}
+                                    onClick={() => handleIndustryClick(segment.name, segment.level)}
+                                    onMouseMove={(event) => handleMouseMove(event, segment.name)}
+                                    onMouseLeave={handleMouseLeave}
+                                    className={`text-center cursor-pointer capitalize text-xs font-light flex items-center justify-center`}
+                                    style={{
+                                        width: segment.percentage + "%",
+                                        padding: "5px",
+                                        background: segment.color ? segment.color.bg : 'transparent',
+                                        transition: "background 0.2s ease-in-out",
+                                        cursor: "pointer",
+                                    }}
+                                >
+                                    <div>
+                                        {segment.percentage.toFixed(0)}{segment.percentage < 5 ? '' : '%'}
+                                    </div>
+                                </div>
+                                // <div className={`p-2 bg-gray-800 capitalize`}>{segment.name}</div>
+                    ))}
+                        </div>
+                    </div>
+                ) : (
+                    <div className="mt-3">
+                        <div style={{ display: "flex", height: "40px", background: "#eee", borderRadius: "20px", overflow: "hidden" }}>
+                            {otherSkills.map((segment, index) => (
+                                <div
+                                    key={index}
+                                    onClick={() => setViewingOther(false)}
+                                    className={`text-center cursor-pointer capitalize text-xs font-light flex items-center justify-center`}
+                                    style={{
+                                        width: segment.percentage + "%",
+                                        padding: "5px",
+                                        background: segment.color.bg,
+                                        transition: "background 0.2s ease-in-out",
+                                        cursor: "pointer",
+                                    }}
+                                >
+                                    <div>
+                                        {segment.percentage.toFixed(0)}%
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                )}
 
-                        return (
-                            <div
-                                key={industry}
-                                onClick={() => handleIndustryClick(industry)}
-                                className={`${color.bg} ${color.text} text-center cursor-pointer`}
-                                style={{
-                                    width: parseFloat(data.percentageOfTotal) + "%",
-                                    padding: "5px",
-                                }}
-                            >
-                                {industry} ({data.percentageOfTotal})
-                            </div>
-                        );
-                    })}
-                </div>
-
-                {/* Skill Breakdown */}
-                {selectedIndustry && (
-                    <div className="mt-5 p-3 border border-gray-300 rounded">
-                        <h3>{selectedIndustry} Skills</h3>
-                        <ul>
-                            {progress[selectedIndustry as keyof typeof progress].skills.map((skill, index) => {
-                                const skillPercentage = (
-                                    (skill.hoursPerformed /
-                                        progress[selectedIndustry as keyof typeof progress].skills.reduce((sum, s) => sum + s.hoursPerformed, 0)) *
-                                    100
-                                ).toFixed(2);
-
-                                const color = colors[index % colors.length]; // Loop through colors
-
-                                return (
-                                    <li key={skill.skill} className={`p-2 ${color.bg} ${color.text} rounded mb-1`}>
-                                        {skill.skill}: {skillPercentage}%
-                                    </li>
-                                );
-                            })}
-                        </ul>
+                {/* Floating Tooltip for Skill Names */}
+                {hoveredSkill && (
+                    <div
+                        className="career-overview-skill-hover absolute bg-black text-white px-2 py-1 rounded shadow-lg text-xs z-20 border "
+                        style={{
+                            left: `${tooltipPosition.x}px`,
+                            top: `${tooltipPosition.y}px`,
+                            pointerEvents: "none",
+                        }}
+                    >
+                        {hoveredSkill}
                     </div>
                 )}
             </CardContent>
         </Card>
-
-
     );
 };
 

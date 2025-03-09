@@ -20,7 +20,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <ClientThemeProvider>
-          <div id={`root`}>{children}</div>
+          {children}
         </ClientThemeProvider>
       </body>
     </html>

@@ -4,14 +4,14 @@ module.exports = {
     './components/**/*.{js,jsx}',
   ],
   darkMode: 'class',
-  theme: {
-    extend: {
-      colors: {
-        gray: {
-          850: '#1f2937',
-        },
-      },
-    },
-  },
+  // theme: {
+  //   extend: {
+  //     colors: {
+  //       gray: {
+  //         850: '#1f2937',
+  //       },
+  //     },
+  //   },
+  // },
   plugins: [],
 };

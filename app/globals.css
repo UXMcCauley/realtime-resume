@@ -75,11 +75,11 @@
 
 #employee-container {
   background: #171717;
-  @apply w-[960px] my-[30px] rounded-lg shadow-xl overflow-visible;
+  @apply w-[960px] my-[30px] rounded-lg shadow-xl overflow-visible mx-auto;
 }
 
 .dashboard-section {
-  @apply w-full px-10 overflow-hidden;
+  @apply w-full px-10 ;
 }
 
 .section-title {
@@ -88,6 +88,14 @@
 
 .section-title-no-indent {
   @apply text-2xl font-extralight text-gray-800 dark:text-gray-100 text-left  mb-6;
+}
+
+.career-overview-header {
+  @apply flex items-baseline justify-start gap-2 w-full mb-2;
+}
+
+.career-overview-skill-hover {
+  @apply flex flex-row bg-black rounded-lg p-2 text-white text-sm;
 }
 
 #talent-select {
@@ -116,38 +124,37 @@
 
 .swiper-container-bg {
   background: #0a0a0a;
-  @apply w-[1000px] h-[150px] relative overflow-visible pl-2 py-4 -ml-[20px] shadow-lg shadow-[rgba(0,0,0,0.4)]/50;
+  @apply w-[1000px] h-[150px] relative overflow-visible py-4 -ml-[60px] shadow-lg shadow-[rgba(0,0,0,0.4)]/50;
 }
 
 .swiper-button-prev::after,
 .swiper-button-next::after {
+  /*z-index: 99;*/
   display: none;
 }
 
 .swiper-button-prev,
 .swiper-button-next {
-  z-index: 55;
-  background: #78a73b;
+  z-index: 99;
+  background: #2b66e0;
   cursor: pointer;
+  top: 0;
+  bottom: 0;
+  position: absolute;
   @apply shadow-lg
 }
 
 .swiper-button-prev {
-  left: 0;
-  @apply rounded-r-lg;
+  @apply rounded-r-lg -ml-[10px] hover:bg-[#2B66E0];
 }
 
 .swiper-button-next {
-  right: 0;
-  @apply rounded-l-lg;
+  @apply rounded-l-lg -mr-[10px];
 }
 
-.swiper-slide {
-  width: 110px;
-  overflow: visible;
-  @apply flex items-center justify-center;
+.swiper-button-disabled {
+  @apply invisible;
 }
-
 .recharts-surface {
   border: 1px solid rgba(140, 140, 140, 0.1);
   padding: 20px 0;

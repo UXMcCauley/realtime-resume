@@ -6,7 +6,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import "./../app/globals.css";
 import {
   FacebookShareButton,
   TwitterShareButton,
@@ -20,7 +19,7 @@ import {
 
 export function Badges({ employee }: { employee: { badges: { name: string; img: string; primaryColor: string; value: number; date: string; note: string; earned: boolean; }[]; } }) {
   const [selectedBadge, setSelectedBadge] = useState<{ name: string; img: string; primaryColor: string; value: number; date: string; note: string; } | null>(null);
-  const [isStart, setIsStart] = useState(true);
+  const [isStart, setIsStart] = useState(false);
   const [isEnd, setIsEnd] = useState(false);
 
   useEffect(() => {
@@ -45,8 +44,8 @@ export function Badges({ employee }: { employee: { badges: { name: string; img: 
     `Check out my ${selectedBadge.name} badge! ${selectedBadge.note}` : '';
 
   return (
-    <div>
-      <h2 className=" section-title">Badges</h2>
+    <div className={`dashboard-section`}>
+      <h2 className="section-title-no-indent">Badges</h2>
       <div className="swiper-container-bg">
         {!isStart && (
           <button className="swiper-button-prev">
@@ -60,8 +59,10 @@ export function Badges({ employee }: { employee: { badges: { name: string; img: 
           </button>
         )}
 
-        <div className="overflow-visible">
+        <div className="">
           <Swiper
+              observer={true}
+              observeParents={true}
             modules={[Navigation]}
             spaceBetween={4}
             slidesPerView={8}
@@ -70,8 +71,8 @@ export function Badges({ employee }: { employee: { badges: { name: string; img: 
               nextEl: '.swiper-button-next',
             }}
             onSlideChange={(swiper) => {
-              setIsStart(swiper.isBeginning);
-              setIsEnd(swiper.isEnd);
+              // setIsStart(swiper.isBeginning);
+              // setIsEnd(swiper.isEnd);
             }}
             className="!px-4"
           >
