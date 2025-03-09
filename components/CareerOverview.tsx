@@ -135,15 +135,14 @@ const CareerOverview: React.FC<CareerOverviewProps> = ({ progress }) => {
     otherSkills = assignColors(otherSkills);
 
     return (
-        <Card className="dashboard-section">
-            <CardHeader className="career-overview-header flex flex-row h-full justify-between items-center space-y-0 p-0 sm:flex-row">
+        <Card className="dashboard-section career-overview">
+            <CardHeader className="career-overview-header flex flex-row justify-between items-center space-y-0 p-0 sm:flex-row">
                 <CardTitle className="section-title-no-indent">Career Overview</CardTitle>
                 <div className={`ml-3 font-extralight`}>
                     {viewingLabel === "" ? '' : <span className={`text-gray-300 text-sm`}>Viewing: </span>} {viewingLabel}
                 </div>
-
             </CardHeader>
-            <CardContent className="m-0 p-0">
+            <CardContent className="m-0">
                 {/* Progress Bar */}
                 {!viewingOther ? (
                     <div style={{ position: "relative" }}>
@@ -172,13 +171,13 @@ const CareerOverview: React.FC<CareerOverviewProps> = ({ progress }) => {
                         </div>
                     </div>
                 ) : (
-                    <div className="mt-3">
-                        <div style={{ display: "flex", height: "40px", background: "#eee", borderRadius: "20px", overflow: "hidden" }}>
+                    <div style={{ position: "relative" }}>
+                        <div className={``} style={{ display: "flex", height: "40px", background: "transparent", borderRadius: "20px", overflow: "visible" }}>
                             {otherSkills.map((segment, index) => (
                                 <div
                                     key={index}
                                     onClick={() => setViewingOther(false)}
-                                    className={`text-center cursor-pointer capitalize text-xs font-light flex items-center justify-center`}
+                                    className={`progress-segment-container text-center cursor-pointer capitalize text-xs font-light flex items-center justify-center flex-col relative`}
                                     style={{
                                         width: segment.percentage + "%",
                                         padding: "5px",
@@ -187,8 +186,9 @@ const CareerOverview: React.FC<CareerOverviewProps> = ({ progress }) => {
                                         cursor: "pointer",
                                     }}
                                 >
-                                    <div>
-                                        {segment.percentage.toFixed(0)}%
+                                    <div>{segment.percentage.toFixed(0)}%</div>
+                                    <div className={`progress-under-label`}>
+                                        <div className={`w-full text-center`}>{segment.name}</div>
                                     </div>
                                 </div>
                             ))}

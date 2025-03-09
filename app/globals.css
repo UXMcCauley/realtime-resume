@@ -82,6 +82,10 @@
   @apply w-full px-10 border-0;
 }
 
+.career-overview {
+  @apply h-fit pb-8;
+}
+
 .section-title {
   @apply text-2xl font-extralight text-gray-800 dark:text-gray-100 text-left w-full mb-6 ml-6;
 }
