@@ -5,10 +5,10 @@ import { Star, StarHalf } from 'lucide-react';
 export function CareerSnapshot({ employee }) {
   // APR Gauge
   const aprMarks = Array.from({ length: 11 }, (_, i) => i);
-  const aprAngle = (employee.timeline[employee.timeline.length - 1].apr / 10) * 180; // Convert 0-10 to 0-180 degrees
+  const aprAngle = (employee.attendance[employee.attendance.length - 1].apr / 10) * 180; // Convert 0-10 to 0-180 degrees
 
   // PPI Stars
-  const ppiValue = employee.timeline[employee.timeline.length - 1].ppi || 0;
+  const ppiValue = employee.attendance[employee.attendance.length - 1].ppi || 0;
   const fullStars = Math.floor(ppiValue);
   const hasHalfStar = ppiValue % 1 >= 0.5;
   const emptyStars = 5 - Math.ceil(ppiValue);
@@ -32,7 +32,7 @@ export function CareerSnapshot({ employee }) {
           </div>
           {/* Gauge Background */}
           <div className="absolute w-[194px] h-[90px] rounded-t-full overflow-visible bottom-[10px] left-[37px]">
-            <div className={`w-full text-2xl font-extralight text-center mt-10`}>{(employee.timeline[employee.timeline.length - 1].apr).toFixed(1)}</div>
+            <div className={`w-full text-2xl font-extralight text-center mt-10`}>{(employee.attendance[employee.attendance.length - 1].apr).toFixed(1)}</div>
             {/* Gauge Marks */}
             {aprMarks.map((mark) => (
                 <div
@@ -87,7 +87,7 @@ export function CareerSnapshot({ employee }) {
               {[...Array(emptyStars)].map((_, i) => (
                   <Star key={`empty-${i}`} className="w-12 h-12 text-gray-600"/>
               ))}</div>
-            <div className="text-2xl font-extralight">{employee.timeline[employee.timeline.length - 1].ppi.toFixed(1)}</div>
+            <div className="text-2xl font-extralight">{employee.attendance[employee.attendance.length - 1].ppi.toFixed(1)}</div>
           </div>
 
         </div>
@@ -116,15 +116,15 @@ export function CareerSnapshot({ employee }) {
               {/* Progress Bar */}
               <div
                   className="absolute inset-y-0 left-0 bg-gradient-to-r from-red-500 via-yellow-500 to-green-500 transition-all duration-1000"
-                  style={{ width: `${employee.timeline[employee.timeline.length - 1].sp*10}%` }}
+                  style={{ width: `${employee.attendance[employee.attendance.length - 1].sp*10}%` }}
               />
               {/* Marker */}
               <div
                   className="absolute top-0 w-0.5 h-full bg-white"
-                  style={{ left: `${employee.timeline[employee.timeline.length - 1].sp*10}%` }}
+                  style={{ left: `${employee.attendance[employee.attendance.length - 1].sp*10}%` }}
               />
             </div>
-            <div className="text-2xl font-extralight">{(employee.timeline[employee.timeline.length - 1].sp*10).toFixed(0)}%</div>
+            <div className="text-2xl font-extralight">{(employee.attendance[employee.attendance.length - 1].sp*10).toFixed(0)}%</div>
           </div>
           </div>
         </div>

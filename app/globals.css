@@ -68,11 +68,6 @@
   }
 }
 
-/*body {*/
-/*  color: rgb(var(--foreground-rgb));*/
-/*  background: rgb(var(--background-rgb));*/
-/*}*/
-
 #employee-container {
   background: #171717;
   @apply w-[960px] my-[30px] rounded-lg shadow-xl overflow-visible mx-auto pb-[40px];
@@ -130,7 +125,7 @@
 }
 
 #talent-select {
-  @apply w-auto h-12 px-4 py-2 text-base border-[1px] border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent;
+  @apply min-w-[200px] h-fit px-4 py-2 text-sm border-[1px] border-gray-800 rounded focus:outline-none focus:border-transparent;
 }
 
 .swiper-image {
@@ -218,6 +213,53 @@
 }
 .recharts-button[data-active="true"].recharts-button[data-key="attendance_percentage"] {
   background: #275fd2;
+}
+
+.tooltip-styles {
+  background: rgb(14, 14, 14);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid rgb(42, 42, 42);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  padding: 8px;
+  color: #fff;
+  font-size: 12px;
+}
+
+.tooltip-styles .tooltip-title {
+  font-weight: bold;
+  margin-bottom: 4px;
+  font-size: 14px;
+}
+
+.progress-blue {
+  color: #2b66e0;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.required-pink {
+  color: #db366e;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.legend-dot-blue {
+  background: #2b66e0;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.legend-dot-pink {
+  background: #db366e;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 8px;
 }
 
 .recharts-responsive-container {

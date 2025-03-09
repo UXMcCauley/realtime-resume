@@ -49,7 +49,8 @@ export function TimelineGraphs({employee, height}: { employee: { attendance_perc
         React.useState<keyof typeof chartConfig | null>("attendance_percentage")
     const total = React.useMemo(
         () => ({
-            attendance_percentage: employee[employee.length - 1].attendance_percentage+"%",
+            // attendance_percentage: employee[employee.length - 1].attendance_percentage+"%",
+            attendance_percentage: 19+"%",
             wage: "$"+employee[employee.length-1].wage.toFixed(2),
             apr: employee[employee.length - 1]?.apr.toFixed(1) || 0,
             ppi: employee[employee.length-1].ppi.toFixed(1),

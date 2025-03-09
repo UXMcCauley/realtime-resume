@@ -10,25 +10,25 @@ export function EmploymentMetrics({ employee }) {
       ? `${years}y ${remainingMonths}m`
       : `${remainingMonths}m`;
   };
-  const formatPTO = (days) => `${days} days`;
+  const formatOnTime = (days) => `${days}%`;
   const formatFlags = (count) => count.toString();
 
   const metrics = [
     {
       label: 'Attendance',
-      value: formatPercentage(employee.attendance || 98)
+      value: formatPercentage(employee.attendance[employee.attendance.length - 1].attendance_percentage || 0)
     },
     {
       label: 'Hourly Rate',
-      value: formatCurrency(employee.pay || 45)
+      value: formatCurrency(employee.attendance[employee.attendance.length - 1].wage || 0)
     },
     {
       label: 'Time w/ Company',
       value: formatTime(employee.timeWithCompany || 18)
     },
     {
-      label: 'PTO',
-      value: formatPTO(employee.pto || 15)
+      label: 'On-Time',
+      value: formatOnTime(employee.onTime.$numberDecimal || 97.4)
     },
     {
       label: 'Employer Flags',

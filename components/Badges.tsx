@@ -6,16 +6,16 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import {
-  FacebookShareButton,
-  TwitterShareButton,
-  LinkedinShareButton,
-  WhatsappShareButton,
-  FacebookIcon,
-  TwitterIcon,
-  LinkedinIcon,
-  WhatsappIcon
-} from 'react-share';
+// import {
+//   FacebookShareButton,
+//   TwitterShareButton,
+//   LinkedinShareButton,
+//   WhatsappShareButton,
+//   FacebookIcon,
+//   TwitterIcon,
+//   LinkedinIcon,
+//   WhatsappIcon
+// } from 'react-share';
 
 export function Badges({ employee }: { employee: { badges: { name: string; img: string; primaryColor: string; value: number; date: string; note: string; earned: boolean; }[]; } }) {
   const [selectedBadge, setSelectedBadge] = useState<{ name: string; img: string; primaryColor: string; value: number; date: string; note: string; } | null>(null);
@@ -39,7 +39,9 @@ export function Badges({ employee }: { employee: { badges: { name: string; img: 
     });
   };
 
-  const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
+  const shareUrl = typeof window !== 'undefined' && window.location.origin
+      ? `${window.location.origin}${window.location.pathname}`
+      : 'https://fallback-url.com';
   const shareTitle = selectedBadge ?
     `Check out my ${selectedBadge.name} badge! ${selectedBadge.note}` : '';
 
@@ -159,18 +161,18 @@ export function Badges({ employee }: { employee: { badges: { name: string; img: 
                     Share this achievement
                   </span>
                   <div className="flex gap-4">
-                    <FacebookShareButton url={shareUrl} title={shareTitle}>
-                      <FacebookIcon size={40} round />
-                    </FacebookShareButton>
-                    <TwitterShareButton url={shareUrl} title={shareTitle}>
-                      <TwitterIcon size={40} round />
-                    </TwitterShareButton>
-                    <LinkedinShareButton url={shareUrl} summary={shareTitle}>
-                      <LinkedinIcon size={40} round />
-                    </LinkedinShareButton>
-                    <WhatsappShareButton url={shareUrl} title={shareTitle}>
-                      <WhatsappIcon size={40} round />
-                    </WhatsappShareButton>
+                    {/*<FacebookShareButton url={shareUrl} title={shareTitle}>*/}
+                    {/*  <FacebookIcon size={40} round />*/}
+                    {/*</FacebookShareButton>*/}
+                    {/*<TwitterShareButton url={shareUrl} title={shareTitle}>*/}
+                    {/*  <TwitterIcon size={40} round />*/}
+                    {/*</TwitterShareButton>*/}
+                    {/*<LinkedinShareButton url={shareUrl} summary={shareTitle}>*/}
+                    {/*  <LinkedinIcon size={40} round />*/}
+                    {/*</LinkedinShareButton>*/}
+                    {/*<WhatsappShareButton url={shareUrl} title={shareTitle}>*/}
+                    {/*  <WhatsappIcon size={40} round />*/}
+                    {/*</WhatsappShareButton>*/}
                   </div>
                 </div>
               </div>

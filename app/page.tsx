@@ -11,11 +11,10 @@ import { TalentProgress } from '@/components/TalentProgress';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { SectionDivider } from '@/components/SectionDivider';
 import About from "@/components/About";
-// import {attendance} from "@/app/api/employee/updated_attendance_data";
 
   export default function Home() {
   interface Employee {
-    timeline: any; // Replace 'any' with the correct type for 'timeline'
+    attendance: any; // Replace 'any' with the correct type for 'timeline'
     firstName: string;
     lastName: string;
     address: string;
@@ -90,13 +89,13 @@ import About from "@/components/About";
           <SectionDivider />
           {employee.badges && <Badges employee={employee}/>}
           <SectionDivider />
-          <TimelineGraphs employee={employee.timeline} height={320} />
+          <TimelineGraphs employee={employee.attendance} height={320} />
           <SectionDivider />
           <EmploymentMetrics employee={employee} />
           <SectionDivider />
           <CareerSnapshot employee={employee} />
           <SectionDivider />
-          {employee.progress ? <TalentProgress progress={employee.progress} employee={[]} /> : <div>Loading progress...</div>}
+          {employee.progress ? <TalentProgress progress={employee.progress} /> : <div>Loading progress...</div>}
 
       </div>
   );
