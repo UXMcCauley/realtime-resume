@@ -104,7 +104,7 @@ export function CareerSnapshot({ employee }) {
             <div className="relative w-[94%] h-8 bg-gray-800 rounded-full overflow-hidden mb-6">
               {/* Segments */}
               <div className="absolute inset-0 flex">
-                {successSegments.map((segment, index) => (
+                {successSegments.map((segment) => (
                     <div
                         key={segment.label}
                         className="flex-1 border-r last:border-r-0 border-gray-700 flex items-center justify-center"
