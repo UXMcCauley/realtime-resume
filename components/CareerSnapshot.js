@@ -23,17 +23,16 @@ export function CareerSnapshot({ employee }) {
 
   return (
     <section className="dashboard-section">
-      {/*<h2 className="section-title">Career Snapshot</h2>*/}
-      <div className="grid grid-cols-3 items-center h-[210px] gap-8">
+      <div className="grid grid-cols-3 items-center h-[170px] gap-8 ">
         <div className={`relative h-full w-full`}>
           {/* APR Gauge */}
           <div className={`absolute top-0 left-[0] w-full`}>
-            <div className={`text-3xl text-center`}>APR</div>
+            <div className={`text-2xl text-center`}>APR</div>
             <div className={`w-full text-sm text-center font-light -mt-1 text-gray-400`}>Average Performance Rating</div>
           </div>
           {/* Gauge Background */}
-          <div className="absolute w-[194px] h-[133px] rounded-t-full overflow-visible bottom-[10px] left-[37px]">
-            <div className={`w-full text-[44px] text-center mt-10`}>{(employee.timeline[employee.timeline.length - 1].apr).toFixed(1)}</div>
+          <div className="absolute w-[194px] h-[90px] rounded-t-full overflow-visible bottom-[10px] left-[37px]">
+            <div className={`w-full text-2xl font-extralight text-center mt-10`}>{(employee.timeline[employee.timeline.length - 1].apr).toFixed(1)}</div>
             {/* Gauge Marks */}
             {aprMarks.map((mark) => (
                 <div
@@ -55,12 +54,12 @@ export function CareerSnapshot({ employee }) {
             ))}
             {/* Needle */}
             <div
-                className="absolute bottom-0 left-1/2 w-1 h-[130px] bg-white origin-bottom transition-transform duration-1000"
+                className="absolute bottom-0 left-1/2 w-1 h-[85px] bg-white origin-bottom transition-transform duration-1000"
                 style={{
                   transform: `rotate(${aprAngle - 90}deg)`,
                 }}
             >
-              <div className="absolute top-[122px] -left-1 w-4 h-4 bg-white rounded-full"/>
+              <div className="absolute top-[79px] -left-1 w-4 h-4 bg-white rounded-full"/>
             </div>
 
           </div>
@@ -68,25 +67,41 @@ export function CareerSnapshot({ employee }) {
 
 
         {/* PPI Stars */}
-        <div className="flex flex-col items-center flex-1 border h-full">
-          <span className="text-sm text-gray-400 mb-2">PPI</span>
-          <div className="flex gap-1">
-            {[...Array(fullStars)].map((_, i) => (
-              <Star key={`full-${i}`} className="w-8 h-8 fill-yellow-400 text-yellow-400" />
-            ))}
-            {hasHalfStar && <StarHalf className="w-8 h-8 fill-yellow-400 text-yellow-400" />}
-            {[...Array(emptyStars)].map((_, i) => (
-              <Star key={`empty-${i}`} className="w-8 h-8 text-gray-600" />
-            ))}
+        <div className="items-center h-full relative">
+          <div className={`absolute top-0 left-[0] w-full`}>
+            <div className={`text-2xl text-center`}>PPI</div>
+            <div className={`w-full text-sm text-center font-light -mt-1 text-gray-400`}>Predictive Performance Index</div>
           </div>
-          <div className="mt-2 text-2xl font-bold">{employee.timeline[employee.timeline.length - 1].ppi.toFixed(1)}</div>
+          <div className="flex flex-col justify-center items-center gap-1 absolute bottom-0 left-1/2 transform -translate-x-1/2">
+            <div className="flex -mb-[52px]">
+              <Star className="w-12 h-12 text-yellow-400"/>
+              <Star className="w-12 h-12 text-yellow-400"/>
+              <Star className="w-12 h-12 text-yellow-400"/>
+              <Star className="w-12 h-12 text-yellow-400"/>
+              <Star className="w-12 h-12 text-yellow-400"/>
+            </div>
+            <div className={`flex mb-4`}>{[...Array(fullStars)].map((_, i) => (
+                <Star key={`full-${i}`} className="w-12 h-12 fill-yellow-400 text-yellow-400"/>
+            ))}
+              {hasHalfStar && <StarHalf className="w-12 h-12 fill-yellow-400 text-yellow-400"/>}
+              {[...Array(emptyStars)].map((_, i) => (
+                  <Star key={`empty-${i}`} className="w-12 h-12 text-gray-600"/>
+              ))}</div>
+            <div className="text-2xl font-extralight">{employee.timeline[employee.timeline.length - 1].ppi.toFixed(1)}</div>
+          </div>
+
         </div>
 
         {/* Success Probability */}
-        <div className="border h-full">
+        <div className=" h-full relative">
+          <div className={`absolute top-0 left-[0] w-full`}>
+            <div className={`text-2xl text-center`}>SP</div>
+            <div className={`w-full text-sm text-center font-light -mt-1 text-gray-400`}>Success Probability</div>
+          </div>
+          <div className="flex flex-col justify-center items-center gap-1 w-full absolute bottom-2 left-1/2 transform -translate-x-1/2">
+
           <div className="flex flex-col items-center bg-opacity-15 h-full rounded-lg w-full">
-            <span className="text-sm text-gray-400 mb-2">Success Probability</span>
-            <div className="relative w-full h-8 bg-gray-800 rounded-full overflow-hidden">
+            <div className="relative w-[94%] h-8 bg-gray-800 rounded-full overflow-hidden mb-6">
               {/* Segments */}
               <div className="absolute inset-0 flex">
                 {successSegments.map((segment, index) => (
@@ -109,9 +124,9 @@ export function CareerSnapshot({ employee }) {
                   style={{ left: `${employee.timeline[employee.timeline.length - 1].sp*10}%` }}
               />
             </div>
-            <div className="mt-2 text-2xl font-bold">{(employee.timeline[employee.timeline.length - 1].sp*10).toFixed(0)}%</div>
+            <div className="text-2xl font-extralight">{(employee.timeline[employee.timeline.length - 1].sp*10).toFixed(0)}%</div>
           </div>
-
+          </div>
         </div>
       </div>
     </section>
