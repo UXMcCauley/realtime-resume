@@ -89,7 +89,7 @@ export function Badges({ employee }: { employee: { badges: { name: string; img: 
                     <img
                       src={badge.img}
                       alt={badge.name}
-                      className="w-12 h-12 text-white"
+                      className="text-white"
                     />
                   </div>
                   {badge.value > 1 && (

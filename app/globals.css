@@ -79,7 +79,7 @@
 }
 
 .dashboard-section {
-  @apply w-full px-10 ;
+  @apply w-full px-10 border-0;
 }
 
 .section-title {
@@ -130,7 +130,7 @@
 }
 
 .swiper-image {
-  @apply relative cursor-pointer overflow-visible transform transition-all hover:scale-105 p-0 select-none;
+  @apply w-[110px] h-[110px] relative cursor-pointer overflow-visible transform transition-all hover:scale-105 p-0 select-none;
 }
 
 .swiper-image.inactive {

@@ -136,7 +136,7 @@ const CareerOverview: React.FC<CareerOverviewProps> = ({ progress }) => {
 
     return (
         <Card className="dashboard-section">
-            <CardHeader className="career-overview-header flex flex-row h-full justify-between items-center space-y-0 border-b p-0 sm:flex-row">
+            <CardHeader className="career-overview-header flex flex-row h-full justify-between items-center space-y-0 p-0 sm:flex-row">
                 <CardTitle className="section-title-no-indent">Career Overview</CardTitle>
                 <div className={`ml-3 font-extralight`}>
                     {viewingLabel === "" ? '' : <span className={`text-gray-300 text-sm`}>Viewing: </span>} {viewingLabel}
