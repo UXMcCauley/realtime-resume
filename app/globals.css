@@ -283,3 +283,14 @@ rect {
   color: #ffffff;
 }
 
+h2 > span {
+  display: block;
+}
+
+.loading-container {
+  @apply w-full h-screen flex items-center justify-center;
+}
+
+.loading-content {
+  @apply text-white text-xl self-center p-10 bg-gray-900 rounded-lg;
+}

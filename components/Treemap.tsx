@@ -7,6 +7,8 @@ export default function Treemap() {
 
     return (
         <div className={'dashboard-section'}>
+            <h2 className="section-title-no-indent">Work Distribution<span className={`text-sm block`}>Left click to drilldown. Right click to back up.</span></h2>
+
             <Chart
             chartType="TreeMap"
             width="100%"

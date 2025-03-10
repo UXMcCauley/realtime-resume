@@ -64,8 +64,8 @@ import Treemap from "@/components/Treemap";
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#070707] flex items-center justify-center">
-        <div className="text-white text-xl">Loading...</div>
+      <div className="loading-container">
+        <div className="loading-content">Loading...</div>
       </div>
     );
   }
@@ -80,9 +80,9 @@ import Treemap from "@/components/Treemap";
 
   return (
       <div id="employee-container">
-          <div className="absolute top-5 right-5">
-              <ThemeToggle />
-          </div>
+          {/*<div className="absolute top-5 right-5">*/}
+          {/*    <ThemeToggle />*/}
+          {/*</div>*/}
           <Header employee={employee} />
           {employee.progress ? <CareerOverview progress={employee.progress} /> : <div>Loading progress...</div>}
           <SectionDivider />
