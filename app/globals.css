@@ -277,3 +277,9 @@
   width: 100%;
 }
 
+rect {
+  stroke: #171717;
+  stroke-width: 1 ;
+  color: #ffffff;
+}
+

@@ -11,6 +11,7 @@ import { TalentProgress } from '@/components/TalentProgress';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { SectionDivider } from '@/components/SectionDivider';
 import About from "@/components/About";
+import Treemap from "@/components/Treemap";
 
   export default function Home() {
   interface Employee {
@@ -96,7 +97,8 @@ import About from "@/components/About";
           <CareerSnapshot employee={employee} />
           <SectionDivider />
           {employee.progress ? <TalentProgress progress={employee.progress} /> : <div>Loading progress...</div>}
-
+            <SectionDivider/>
+          <Treemap/>
       </div>
   );
 }
